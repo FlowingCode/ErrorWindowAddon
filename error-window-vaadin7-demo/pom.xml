@@ -21,22 +21,23 @@
 		<jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
 	</properties>
 
-    <!--
+
 	<organization>
-		<name>My Name</name>
-		<url>https://github.com/mygithubaccount/MyComponent/</url>
+		<name>Flowing Code</name>
+		<url>https://github.com/FlowingCode/error-window-addon/</url>
 	</organization>
 
+ <!--
 	<scm>
-		<url>git://github.com/mygithubaccount/MyComponent.git</url>
-		<connection>scm:git:git://github.com/mygithubaccount/MyComponent.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:/mygithubaccount/${componentClassName}.git</developerConnection>
-		<tag>MyComponent add-on for Vaadin</tag>
+		<url>git://github.com/FlowingCode/error-window-addon.git</url>
+		<connection>scm:git:git://github.com/FlowingCode/error-window-addon.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:/FlowingCode/${componentClassName}.git</developerConnection>
+		<tag>Error Window Add-on for Vaadin</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/mygithubaccount/MyComponent/issues</url>
+		<url>https://github.com/FlowingCode/error-window-addon/issues</url>
 	</issueManagement>
     -->
 
@@ -91,7 +92,7 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>		
 	</dependencies>
 
 	<build>

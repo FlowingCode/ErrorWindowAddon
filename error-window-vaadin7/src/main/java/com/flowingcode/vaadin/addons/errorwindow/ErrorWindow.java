@@ -24,10 +24,8 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 /**
- * Component to visualize an error, caused by an exception, as a modal sub-window.
- * 
- * When in production mode it shows a code to report.
- * 
+ * Component to visualize an error, caused by an exception, as a modal sub-window. <br> 
+ * When in production mode it shows a code to report. <br>
  * When in debug mode it allows to visualize the stack trace of the error.
  * 
  * @author pbartolo
@@ -167,7 +165,7 @@ public class ErrorWindow extends Window {
     }
 
     /**
-     * To know if the app is in production mode
+     * To know if the app is in production mode.
      * 
      * @return true if is production mode
      */

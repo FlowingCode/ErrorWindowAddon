@@ -25,17 +25,17 @@ public class DemoUI extends UI {
 
     @Override
     protected void init(final VaadinRequest request) {
-        final Button errorButton = new Button("Throw Error", event -> {
+        Button errorButton = new Button("Throw Error", event -> {
             Integer.parseInt("asdf");
         });
         errorButton.setErrorHandler(new WindowErrorHandler(this));
 
-        final Button errorMsgButton = new Button("Throw Error Custom Message", event -> {
+        Button errorMsgButton = new Button("Throw Error Custom Message", event -> {
             Integer.parseInt("asdf");
         });
         errorMsgButton.setErrorHandler(new WindowErrorHandler(this, "I'M A CUSTOM MESSAGE"));
 
-        final Button errorWithoutHandlerButton = new Button("Open Error Popup Without Handler");
+        Button errorWithoutHandlerButton = new Button("Open Error Popup Without Handler");
         errorWithoutHandlerButton.addClickListener(event -> {
             try {
                 throw new Exception("Button click failed");
@@ -44,10 +44,7 @@ public class DemoUI extends UI {
             }
         });
 
-        final VerticalLayout layout = new VerticalLayout(errorButton, errorMsgButton, errorWithoutHandlerButton);
-        layout.setMargin(true);
-        layout.setSpacing(true);
-
-        setContent(layout);
+       VerticalLayout layout = new VerticalLayout(errorButton, errorMsgButton, errorWithoutHandlerButton);
+       setContent(layout);
     }
 }

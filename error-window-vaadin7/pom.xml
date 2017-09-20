@@ -33,22 +33,23 @@
 		<Vaadin-Addon>${project.artifactId}-${project.version}.jar</Vaadin-Addon>
 	</properties>
 
-    <!--
+    
 	<organization>
-		<name>My Name</name>
-		<url>https://github.com/mygithubaccount/MyComponent/</url>
+		<name>Flowing Code</name>
+		<url>https://github.com/FlowingCode/error-window-addon/</url>
 	</organization>
 
+<!--
 	<scm>
-		<url>https://github.com/mygithubaccount/MyComponent</url>
-		<connection>scm:git:git://github.com/mygithubaccount/MyComponent.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:/mygithubaccount/${componentClassName}.git</developerConnection>
-		<tag>MyComponent add-on for Vaadin</tag>
+		<url>https://github.com/FlowingCode/error-window-addon</url>
+		<connection>scm:git:git://github.com/FlowingCode/error-window-addon.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:/FlowingCode/${componentClassName}.git</developerConnection>
+		<tag>Error Window Add-on for Vaadin</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/mygithubaccount/MyComponent/issues</url>
+		<url>https://github.com/FlowingCode/error-window-addon/issues</url>
 	</issueManagement>
     -->
 
@@ -87,7 +88,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-		
+						
 	</dependencies>
 
 	<build>
