@@ -4,12 +4,12 @@ Error Window Add-on is a UI component add-on for Vaadin Framework versions 7 and
 
 ## Features
 
-This add-on allows to add a sub-window to inform that an error was cause by and exception.
+This add-on allows to add a sub-window to inform that an error was cause by an exception.
 
 The sub-window shows different information depending on the running mode of the application:
 
-	- if the application is running in debug mode, it shows the stack trace of the exception.
-	- if the applicacion is running in production mode, it shows a code to report that can be found in log files.
+- if the application is running in debug mode, it shows the stack trace of the exception.
+- if the applicacion is running in production mode, it shows a code to report that can be found in log files.
 
 The sub-window (ErrorWindow) can be invoke through an error handler (WindowErrorHandler) or just by itself calling the "open" method.
 
@@ -25,7 +25,6 @@ Not available yet.
 ## Download release
 
 Official releases of this add-on will be available at Vaadin Directory soon. 
-<Official releases of this add-on are available at Vaadin Directory. For Maven instructions, download and reviews, go to http://vaadin.com/addon/error-window-addon>
 
 ## Building and running demo
 
@@ -40,7 +39,6 @@ To see the demo, navigate to http://localhost:8080/
 
 ### Version 1.0.0-SNAPSHOT
 - First Version
-
 
 ## Roadmap
 
@@ -65,9 +63,8 @@ Contributions are welcome, but there are no guarantees that they are accepted as
 Add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
 Error Window Add-on is written by 
-
-Paola De Bartolo
-Felipe Lang
+- Paola De Bartolo
+- Felipe Lang
 
 
 
