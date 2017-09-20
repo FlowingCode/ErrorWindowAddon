@@ -2,7 +2,7 @@
 
 Error Window Add-on is a UI component add-on for Vaadin Framework versions 7 and 8.
 
-##Features
+## Features
 
 This add-on allows to add a sub-window to inform that an error was cause by and exception.
 
@@ -66,8 +66,8 @@ Add-on is distributed under Apache License 2.0. For license terms, see LICENSE.t
 
 Error Window Add-on is written by 
 
-	*Paola De Bartolo
-	*Felipe Lang
+Paola De Bartolo
+Felipe Lang
 
 
 
