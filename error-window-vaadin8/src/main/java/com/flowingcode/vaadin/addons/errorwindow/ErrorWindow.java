@@ -86,8 +86,8 @@ public class ErrorWindow extends Window {
      */
     private VerticalLayout createMainLayout() {
         final VerticalLayout mainLayout = new VerticalLayout();
-        mainLayout.setMargin(false);
         mainLayout.setSpacing(false);
+        mainLayout.setMargin(true);
        
         final Label errorLabel = createErrorLabel();
         mainLayout.addComponent(errorLabel);
@@ -100,7 +100,7 @@ public class ErrorWindow extends Window {
 
         final Button closeButton = new Button("Close", event -> close());
         mainLayout.addComponent(closeButton);
-        mainLayout.setComponentAlignment(closeButton, Alignment.TOP_RIGHT);
+        mainLayout.setComponentAlignment(closeButton, Alignment.TOP_RIGHT);        
 
         return mainLayout;
     }
