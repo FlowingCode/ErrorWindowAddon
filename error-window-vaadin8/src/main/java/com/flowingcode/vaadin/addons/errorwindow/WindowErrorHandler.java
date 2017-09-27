@@ -1,7 +1,5 @@
 package com.flowingcode.vaadin.addons.errorwindow;
 
-import java.util.Optional;
-
 import com.vaadin.server.ErrorEvent;
 import com.vaadin.server.ErrorHandler;
 import com.vaadin.ui.UI;
@@ -9,7 +7,7 @@ import com.vaadin.ui.UI;
 @SuppressWarnings("serial")
 public class WindowErrorHandler implements ErrorHandler {
 
-    private final Optional<String> errorMessage;
+    private final String errorMessage;
 
     private final UI ui;
 
@@ -19,12 +17,12 @@ public class WindowErrorHandler implements ErrorHandler {
 
     public WindowErrorHandler(final UI ui, final String errorMessage) {
         this.ui = ui;
-        this.errorMessage = Optional.ofNullable(errorMessage);
+        this.errorMessage = errorMessage;
     }
 
     @Override
     public void error(final ErrorEvent event) {
-        new ErrorWindow(event.getThrowable(), errorMessage.orElseGet(() -> null)).open(ui);
+        new ErrorWindow(event.getThrowable(), errorMessage).open(ui);
     }
 
 }
