@@ -120,7 +120,7 @@ public class ErrorWindow extends Window {
 
             @Override
             public void buttonClick(final ClickEvent event) {
-                exceptionTraceLayout.setVisible(!exceptionTraceLayout.isVisible());
+            	showExceptionTrace();
             }
         });
         errorDetailsButton.addStyleName("link small");
@@ -129,6 +129,11 @@ public class ErrorWindow extends Window {
         buttonsLayout.setComponentAlignment(errorDetailsButton, Alignment.TOP_LEFT);
         return buttonsLayout;
     }
+    
+    private void showExceptionTrace() {
+		exceptionTraceLayout.setVisible(!exceptionTraceLayout.isVisible());
+		setModal(Boolean.TRUE);
+	}
 
     private VerticalLayout createExceptionTraceLayout() {
         exceptionTraceLayout = new VerticalLayout();

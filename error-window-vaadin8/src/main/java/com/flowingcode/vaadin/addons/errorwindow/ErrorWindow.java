@@ -107,7 +107,7 @@ public class ErrorWindow extends Window {
 
     private HorizontalLayout createDetailsButtonLayout() {
         final HorizontalLayout buttonsLayout = new HorizontalLayout();
-        final Button errorDetailsButton = new Button("Show error detail", event -> exceptionTraceLayout.setVisible(!exceptionTraceLayout.isVisible()));
+        final Button errorDetailsButton = new Button("Show error detail", event -> showExceptionTrace());
         errorDetailsButton.addStyleName("link small");
         errorDetailsButton.setIcon(VaadinIcons.PLUS);
         buttonsLayout.addComponent(errorDetailsButton);
@@ -115,6 +115,11 @@ public class ErrorWindow extends Window {
         return buttonsLayout;
     }
 
+    private void showExceptionTrace() {
+		exceptionTraceLayout.setVisible(!exceptionTraceLayout.isVisible());
+		setModal(Boolean.TRUE);
+	}
+    
     private VerticalLayout createExceptionTraceLayout() {
         exceptionTraceLayout = new VerticalLayout();
         exceptionTraceLayout.addComponent(createStackTraceArea());
