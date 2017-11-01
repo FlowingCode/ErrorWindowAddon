@@ -5,7 +5,4 @@
 	<!-- Inherit DefaultWidgetSet -->
 	<inherits name="com.vaadin.DefaultWidgetSet" /> 
 
-	<!-- Widget styles in public -directory -->
-	<stylesheet src="error-window-addon/styles.css"/>
-
 </module>
