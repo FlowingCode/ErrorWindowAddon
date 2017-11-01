@@ -14,7 +14,9 @@
 
 	<modules>
 		<module>error-window-vaadin7</module>
+		<module>error-window-vaadin7-demo</module>
 		<module>error-window-vaadin8</module>
+		<module>error-window-vaadin8-demo</module>
 	</modules>
 
 	<dependencyManagement>
