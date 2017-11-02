@@ -4,7 +4,7 @@
 	<groupId>com.flowingcode.vaadin.addons</groupId>
 	<artifactId>error-window-vaadin-demo</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Error Window Add-on for Vaadin 7 Demo</name>
 
 	<prerequisites>
