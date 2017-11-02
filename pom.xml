@@ -17,6 +17,21 @@
 		<module>error-window-vaadin-demo</module>
 	</modules>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<processAllModules>true</processAllModules>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
