@@ -8,7 +8,7 @@
 	<version>2.0.0-SNAPSHOT</version>
 	
 	<packaging>jar</packaging>
-	<name>Error Window Add-on for Vaadin 8</name>
+	<name>Error Window Add-on</name>
 
 	<prerequisites>
 		<maven>3</maven>
