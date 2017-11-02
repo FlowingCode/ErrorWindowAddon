@@ -21,7 +21,7 @@
 		<url>https://github.com/FlowingCode/ErrorWindowAddon</url>
 		<connection>scm:git:git://github.com/FlowingCode/ErrorWindowAddon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com:/FlowingCode/ErrorWindowAddon.git</developerConnection>
-		<tag>Error Window Add-on for Vaadin</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<build>
