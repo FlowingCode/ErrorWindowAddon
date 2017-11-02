@@ -15,7 +15,6 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-@Theme("demo")
 @Title("Error Window Add-on Demo")
 @SuppressWarnings("serial")
 public class DemoUI extends UI {
