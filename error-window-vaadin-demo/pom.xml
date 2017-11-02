@@ -71,7 +71,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.flowingcode.vaadin.addons</groupId>
-			<artifactId>error-window-vaadin8</artifactId>
+			<artifactId>error-window-vaadin</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
