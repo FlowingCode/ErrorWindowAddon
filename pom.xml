@@ -16,6 +16,13 @@
 		<module>error-window-vaadin</module>
 		<module>error-window-vaadin-demo</module>
 	</modules>
+	
+	<scm>
+		<url>https://github.com/FlowingCode/ErrorWindowAddon</url>
+		<connection>scm:git:git://github.com/FlowingCode/ErrorWindowAddon.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:/FlowingCode/ErrorWindowAddon.git</developerConnection>
+		<tag>Error Window Add-on for Vaadin</tag>
+	</scm>
 
 	<build>
 		<pluginManagement>
