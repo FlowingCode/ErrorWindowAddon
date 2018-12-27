@@ -1,3 +1,5 @@
+[![Build Status](https://jenkins.flowingcode.com/job/ErrorWindow-addon/badge/icon)](https://jenkins.flowingcode.com/job/ErrorWindow-addon)
+
 # Error Window Add-on for Vaadin
 
 Error Window Add-on is a UI component add-on for Vaadin Framework versions 7 and 8.
