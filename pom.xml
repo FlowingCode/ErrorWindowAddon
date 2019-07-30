@@ -23,6 +23,12 @@
 		<tag>HEAD</tag>
 	</scm>
 
+	<inceptionYear>2017</inceptionYear>
+	<organization>
+		<name>Flowing Code</name>
+		<url>https://github.com/FlowingCode/error-window-addon/</url>
+	</organization>
+	
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -41,6 +47,16 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.14</version>
+				<configuration>
+					<licenseName>apache_v2</licenseName>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 	
 	<profiles>

@@ -29,7 +29,7 @@
 		<Vaadin-Addon>${project.artifactId}-${project.version}.jar</Vaadin-Addon>
 	</properties>
 
-    
+    <inceptionYear>2017</inceptionYear>
 	<organization>
 		<name>Flowing Code</name>
 		<url>https://github.com/FlowingCode/error-window-addon/</url>
@@ -170,6 +170,15 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.14</version>
+				<configuration>
+					<licenseName>apache_v2</licenseName>
+				</configuration>
+			</plugin>
+		
 			<!-- Testing -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -20,7 +20,7 @@
 		<jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
 	</properties>
 
-   
+	<inceptionYear>2017</inceptionYear>
 	<organization>
 		<name>Flowing Code</name>
 		<url>https://github.com/FlowingCode/error-window-addon/</url>
@@ -123,6 +123,15 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.14</version>
+				<configuration>
+					<licenseName>apache_v2</licenseName>
+				</configuration>
+			</plugin>
+		
 			<!-- The Jetty plugin allows us to easily test the development build by -->
 			<!-- running jetty:run on the command line. -->
 			<plugin>
