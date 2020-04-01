@@ -24,3 +24,8 @@ nbdist/
 .nb-gradle/
 
 widgetsets
+/node_modules
+/webpack.generated.js
+/package.json
+/package-lock.json
+/webpack.config.js

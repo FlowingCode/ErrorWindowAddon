@@ -3,19 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.flowingcode.vaadin.addons</groupId>
 	<artifactId>error-window-addon</artifactId>
-	<packaging>pom</packaging>
-	<version>2.0.1-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 	<name>Error Window Add-on Project</name>
 
 	<prerequisites>
 		<maven>3</maven>
 	</prerequisites>
-
-	<modules>
-		<module>error-window-vaadin</module>
-		<module>error-window-vaadin-demo</module>
-	</modules>
 	
+	<inceptionYear>2018</inceptionYear>
+	<organization>
+		<name>Flowing Code</name>
+		<url>https://www.flowingcode.com</url>
+	</organization>
+
 	<scm>
 		<url>https://github.com/FlowingCode/ErrorWindowAddon</url>
 		<connection>scm:git:git://github.com/FlowingCode/ErrorWindowAddon.git</connection>
@@ -23,13 +23,106 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<inceptionYear>2017</inceptionYear>
-	<organization>
-		<name>Flowing Code</name>
-		<url>https://github.com/FlowingCode/error-window-addon/</url>
-	</organization>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/FlowingCode/ErrorWindowAddon</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	
-	<build>
+	<properties>
+        <vaadin.version>14.1.3</vaadin.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jetty.version>9.4.15.v20190215</jetty.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${vaadin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>Vaadin Directory</id>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>Vaadin prereleases</id>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+        </repository>
+        <!-- The bintray repository contain webjars immediately after generation. If the webjar is available
+             in Maven central, you do not need this repository -->
+        <repository>
+            <id>webjars</id>
+            <url>https://dl.bintray.com/webjars/maven</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <!-- Replace artifactId with vaadin-core to use only free components -->
+            <artifactId>vaadin</artifactId>
+            <exclusions>
+                <!-- Webjars are only needed when running in Vaadin 13 compatibility mode in V14.
+                     Your add-on can support npm in the same version mode and V13 compatiblity mode at the same time,
+                     or with separate versions. Any V13 version should work with the compatibility mode in V14. -->
+                <exclusion>
+                    <groupId>com.vaadin.webjar</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bowergithub.insites</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bowergithub.polymer</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bowergithub.polymerelements</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bowergithub.vaadin</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bowergithub.webcomponents</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -38,76 +131,128 @@
 					<version>2.5.3</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.8.2</version>
-					<configuration>
-						<skip>true</skip>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>versions-maven-plugin</artifactId>
-					<version>2.5</version>
-					<configuration>
-						<processAllModules>true</processAllModules>
-					</configuration>
-				</plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
 			</plugins>
 		</pluginManagement>
-		<plugins>
+		
+        <plugins>
+			
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<version>1.14</version>
+				<version>1.14</version>    
 				<configuration>
 					<licenseName>apache_v2</licenseName>
+					<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
 				</configuration>
 			</plugin>
-		</plugins>
-	</build>
-	
-	<profiles>
-		<profile>
-			<!-- Vaadin pre-release repositories -->
-			<id>vaadin-prerelease</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			
-			<repositories>
-				<repository>
-					<id>vaadin-prereleases</id>
-					<url>https://maven.vaadin.com/vaadin-prereleases</url>
-				</repository>
-				<repository>
-					<id>vaadin-snapshots</id>
-					<url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-					<releases>
-						<enabled>false</enabled>
-					</releases>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>vaadin-prereleases</id>
-					<url>https://maven.vaadin.com/vaadin-prereleases</url>
-				</pluginRepository>
-				<pluginRepository>
-					<id>vaadin-snapshots</id>
-					<url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-					<releases>
-						<enabled>false</enabled>
-					</releases>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</pluginRepository>
-			</pluginRepositories>
-		</profile>
-	</profiles>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>false</addClasspath>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Vaadin-Package-Version>1</Vaadin-Package-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-maven-plugin</artifactId>
+                <version>${vaadin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-frontend</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <!-- Use test scope because the UI/demo classes are in
+                            the test package. -->
+                    <useTestScope>true</useTestScope>
+                    <supportedPackagings>
+                        <supportedPackaging>jar</supportedPackaging>
+                    </supportedPackagings>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
+    <profiles>
+        <profile>
+            <id>directory</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <phase>install</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <quiet>true</quiet>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
