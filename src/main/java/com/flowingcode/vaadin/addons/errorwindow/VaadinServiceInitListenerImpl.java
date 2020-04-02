@@ -10,12 +10,11 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
 
 	@Override
 	public void serviceInit(ServiceInitEvent event) {
-		event.getSource().addSessionInitListener(ev -> sessionInit(ev.getSession()));
+		event.getSource().addSessionInitListener(ev -> 
+			ev.getSession().setErrorHandler(ev2 -> {
+				ErrorManager.showError(ev2.getThrowable());
+			})
+		);
 	}
 
-	private void sessionInit(VaadinSession session) {
-		session.setErrorHandler(ev -> {
-			ErrorManager.showError(ev.getThrowable());
-		});
-	}
 }

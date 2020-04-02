@@ -30,7 +30,6 @@ import org.slf4j.LoggerFactory;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -74,7 +73,6 @@ public class ErrorWindow extends Dialog {
 
     public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode) {
         super();
-        assert cause != null;
 
         uuid = UUID.randomUUID().toString();
         this.cause = cause;
@@ -88,11 +86,12 @@ public class ErrorWindow extends Dialog {
     }
 
     private void initWindow() {
-        logger.error(String.format("Error occurred %s", uuid), cause);
+    	if (logger.isErrorEnabled()) {
+            logger.error(String.format("Error occurred %s", uuid), cause);
+    	}
         setWidth("800px");
         setCloseOnEsc(true);
         add(createMainLayout());
-        
     }
 
     /**
@@ -160,16 +159,9 @@ public class ErrorWindow extends Dialog {
         final TextArea area = new TextArea();
         area.setWidthFull();
         area.setHeight("15em");
-//        area.setWordWrap(false);
-//        area.setWidth(100, Unit.PERCENTAGE);
-//        area.setRows(15);
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         final PrintWriter pw = new PrintWriter(baos);
-//        if (cause instanceof MethodException) {
-//            cause.getCause().printStackTrace(pw);
-//        } else {
-            cause.printStackTrace(pw);
-//        }
+        cause.printStackTrace(pw);
         pw.flush();
         area.setValue(baos.toString());
         return area;
