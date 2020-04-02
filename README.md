@@ -1,4 +1,4 @@
-[![Build Status](https://jenkins.flowingcode.com/job/ErrorWindow-addon/badge/icon)](https://jenkins.flowingcode.com/job/ErrorWindow-addon)
+[![Build Status](https://jenkins.flowingcode.com/job/ErrorWindow-8-addon/badge/icon)](https://jenkins.flowingcode.com/job/ErrorWindow-8-addon)
 
 # Error Window Add-on for Vaadin
 
