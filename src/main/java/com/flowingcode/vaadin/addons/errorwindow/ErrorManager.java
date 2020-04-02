@@ -19,7 +19,7 @@
  */
 package com.flowingcode.vaadin.addons.errorwindow;
 
-public class ErrorManager {
+public final class ErrorManager {
 
 	private static ErrorWindowFactory errorWindowFactory = new DefaultErrorWindowFactory();
 
