@@ -24,7 +24,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route()
+@Route("")
 public class DemoView extends VerticalLayout {
 
 	public DemoView() {
