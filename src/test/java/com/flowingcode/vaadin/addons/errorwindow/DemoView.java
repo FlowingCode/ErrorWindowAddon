@@ -24,10 +24,10 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route()
-public class DemoUI extends VerticalLayout {
+@Route("")
+public class DemoView extends VerticalLayout {
 
-	public DemoUI() {
+	public DemoView() {
 		Button errorButton = new Button("Throw Error", event -> {
 			Integer.parseInt("asdf");
 		});
