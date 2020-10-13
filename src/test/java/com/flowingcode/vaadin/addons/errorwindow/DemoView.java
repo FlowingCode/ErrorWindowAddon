@@ -18,7 +18,6 @@
  * #L%
  */
 package com.flowingcode.vaadin.addons.errorwindow;
-
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -32,5 +31,4 @@ public class DemoView extends VerticalLayout implements BeforeEnterObserver {
 	public void beforeEnter(BeforeEnterEvent event) {
 		event.forwardTo(ErrorwindowDemoView.class);
 	}
-
 }

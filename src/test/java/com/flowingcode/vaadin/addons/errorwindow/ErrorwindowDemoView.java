@@ -3,6 +3,7 @@ package com.flowingcode.vaadin.addons.errorwindow;
 import com.flowingcode.vaadin.addons.DemoLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
@@ -35,15 +36,15 @@ public class ErrorwindowDemoView extends VerticalLayout {
 				w.open();
 			}
 		});
-
-		Button toggleProductionMode = new Button("Toggle production mode");
-		toggleProductionMode.addClickListener(ev->{
-			System.setProperty("productionMode",""+("false".equals(System.getProperty("productionMode"))));
+		
+		Checkbox productionModeCb = new Checkbox("Production Mode");
+		productionModeCb.addValueChangeListener(e -> {
+			System.setProperty("productionMode", "" + productionModeCb.getValue().toString());
 			Notification.show("Currently production mode is: " + System.getProperty("productionMode"));
 		});
-		
+
 		setSizeFull();
-		add(errorButton, throwErrorWithoutErrorHandler, throwErrorWithCustomMessage, toggleProductionMode);
+		add(productionModeCb, errorButton, throwErrorWithoutErrorHandler, throwErrorWithCustomMessage);
 	}
 
 }
