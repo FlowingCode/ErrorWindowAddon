@@ -1,8 +1,8 @@
 /*-
  * #%L
- * Error Window Add-on Project
+ * TwinColGrid add-on
  * %%
- * Copyright (C) 2018 - 2020 Flowing Code
+ * Copyright (C) 2017 - 2020 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,20 +17,16 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons.errorwindow;
+package com.flowingcode.vaadin.addons;
 
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.router.RouterLayout;
 
 @SuppressWarnings("serial")
-@Route("")
-public class DemoView extends VerticalLayout implements BeforeEnterObserver {
+public class DemoLayout extends Div implements RouterLayout {
 
-	@Override
-	public void beforeEnter(BeforeEnterEvent event) {
-		event.forwardTo(ErrorwindowDemoView.class);
+	public DemoLayout() {
+		setSizeFull();
 	}
 
 }
