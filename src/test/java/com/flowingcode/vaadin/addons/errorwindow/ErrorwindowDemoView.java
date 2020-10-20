@@ -11,7 +11,7 @@ import com.vaadin.flow.router.Route;
 import java.awt.TextField;
 
 @SuppressWarnings("serial")
-@Route(value = "errorwindow", layout = DemoLayout.class)
+@Route(value = "error-window", layout = DemoLayout.class)
 public class ErrorwindowDemoView extends VerticalLayout {
 
 	public ErrorwindowDemoView() {
