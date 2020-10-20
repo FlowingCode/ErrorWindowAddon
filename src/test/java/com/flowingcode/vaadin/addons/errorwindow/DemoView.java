@@ -32,5 +32,5 @@ public class DemoView extends VerticalLayout implements BeforeEnterObserver {
 	public void beforeEnter(BeforeEnterEvent event) {
 		event.forwardTo(ErrorwindowDemoView.class);
 	}
-	
+
 }
