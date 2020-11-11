@@ -1,12 +1,14 @@
 package com.flowingcode.vaadin.addons.errorwindow;
 
 import com.flowingcode.vaadin.addons.DemoLayout;
+import com.flowingcode.vaadin.addons.GithubLink;
 import com.flowingcode.vaadin.addons.demo.impl.TabbedDemoImpl;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
 @Route(value = "error-window", layout = DemoLayout.class)
+@GithubLink("https://github.com/FlowingCode/ErrorWindowAddon")
 public class ErrorwindowDemoView extends VerticalLayout {
 
 	private static final String ERROR_DEMO = "Error Window Demo";
