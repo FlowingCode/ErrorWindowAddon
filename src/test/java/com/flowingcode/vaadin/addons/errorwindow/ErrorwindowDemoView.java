@@ -11,10 +11,11 @@ import com.vaadin.flow.router.Route;
 public class ErrorwindowDemoView extends TabbedDemo {
 
 	private static final String ERROR_DEMO = "Error Window Demo";
-	private static final String ERROR_SOURCE = "https://github.com/FlowingCode/ErrorWindowAddon/blob/master/src/test/java/com/flowingcode/vaadin/addons/errorwindow/ErrorwindowDemoView.java";
+    private static final String ERROR_SOURCE =
+        "https://github.com/FlowingCode/ErrorWindowAddon/blob/master/src/test/java/com/flowingcode/vaadin/addons/errorwindow/ErrorwindowDemo.java";
 
 	public ErrorwindowDemoView() {
-		addDemo(new ErrorwindowDemo(), ERROR_DEMO, ERROR_SOURCE);		
+		addDemo(new ErrorwindowDemo(), ERROR_DEMO, ERROR_SOURCE);
 		setSizeFull();
 	}
 
