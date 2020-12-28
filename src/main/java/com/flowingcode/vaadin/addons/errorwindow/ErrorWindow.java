@@ -48,10 +48,6 @@ public class ErrorWindow extends Dialog {
 
 	private static final Logger logger = LoggerFactory.getLogger(ErrorWindow.class);
 
-	private static final String DEFAULT_CAPTION = "<h3 style='margin-top:0px;text-align:center'>An error has occurred</h3>";
-
-	private static final String DEFAULT_ERROR_LABEL_MESSAGE = "Please contact the system administrator for more information.";
-
 	private VerticalLayout exceptionTraceLayout;
 
 	private final Throwable cause;
@@ -62,30 +58,48 @@ public class ErrorWindow extends Dialog {
 
 	private boolean productionMode;
 
+	private ErrorWindowI18n i18n;
+
 	public ErrorWindow(final Throwable cause) {
-		this(cause, null, isProductionMode());
+		this(cause, null, isProductionMode(), ErrorWindowI18n.createDefault());
+	}
+
+	public ErrorWindow(final Throwable cause, final ErrorWindowI18n i18n) {
+		this(cause, null, isProductionMode(), i18n);
 	}
 
 	public ErrorWindow(final Throwable cause, final String errorMessage) {
-		this(cause, errorMessage, isProductionMode());
+		this(cause, errorMessage, isProductionMode(), ErrorWindowI18n.createDefault());
+	}
+
+	public ErrorWindow(final Throwable cause, final String errorMessage, final ErrorWindowI18n i18n) {
+		this(cause, errorMessage, isProductionMode(), i18n);
 	}
 
 	public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode) {
+		this(cause, errorMessage, productionMode, ErrorWindowI18n.createDefault());
+	}
+	public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode, final ErrorWindowI18n i18n) {
 		super();
 
 		uuid = UUID.randomUUID().toString();
 		this.cause = cause;
 		this.errorMessage = errorMessage;
 		this.productionMode = productionMode;
+		this.i18n = i18n;
 		initWindow();
 	}
 	
 	public ErrorWindow(ErrorDetails errorDetails) {
-		this(errorDetails.getThrowable(), errorDetails.getCause());
+		this(errorDetails, ErrorWindowI18n.createDefault());
 	}
 
 	public ErrorWindow(ErrorDetails errorDetails, boolean productionMode) {
 		this(errorDetails.getThrowable(), errorDetails.getCause(), productionMode);
+	}
+
+	public ErrorWindow(ErrorDetails errorDetails, final ErrorWindowI18n i18n) {
+		this(errorDetails.getThrowable(), errorDetails.getCause(), i18n);
 	}
 
 	private static boolean isProductionMode() {
@@ -110,7 +124,7 @@ public class ErrorWindow extends Dialog {
 		mainLayout.setPadding(false);
 		mainLayout.setMargin(false);
 
-		final Html title = new Html(DEFAULT_CAPTION);
+		final Html title = new Html(String.format("<h3 style='margin-top:0px;text-align:center'>%s</h3>", i18n.getCaption()));
 		title.getElement().getStyle().set("width", "100%");
 		mainLayout.add(title);
 		
@@ -129,7 +143,7 @@ public class ErrorWindow extends Dialog {
 			mainLayout.add(createExceptionTraceLayout());
 		}
 
-		final Button closeButton = new Button("Close", event -> close());
+		final Button closeButton = new Button(i18n.getClose(), event -> close());
 		buttonsLayout.add(closeButton);
 		mainLayout.add(buttonsLayout);
 		mainLayout.setHorizontalComponentAlignment(Alignment.END, buttonsLayout);
@@ -138,7 +152,7 @@ public class ErrorWindow extends Dialog {
 	}
 
 	private Button createDetailsButtonLayout() {
-		final Button errorDetailsButton = new Button("Show error detail", event -> {
+		final Button errorDetailsButton = new Button(i18n.getDetails(), event -> {
 			boolean visible = !exceptionTraceLayout.isVisible();
 			exceptionTraceLayout.setVisible(visible);
 			if(visible) {
@@ -175,9 +189,9 @@ public class ErrorWindow extends Dialog {
 	}
 
 	protected Html createErrorLabel() {
-		String label = errorMessage == null ? DEFAULT_ERROR_LABEL_MESSAGE : errorMessage;
+		String label = errorMessage == null ? i18n.getDefaultErrorMessage() : errorMessage;
 		if (productionMode) {
-			label = label.concat(String.format("<br />Please report the following code to system administrator:<h4><p><center>%s<center/></p></h4>", uuid));
+			label = label.concat(String.format("<br />%s<h4><p><center>%s<center/></p></h4>", i18n.getInstructions(), uuid));
 		}
 		final Html errorLabel = new Html("<span>" + label + "</span>");
 		errorLabel.getElement().getStyle().set("width", "100%");
