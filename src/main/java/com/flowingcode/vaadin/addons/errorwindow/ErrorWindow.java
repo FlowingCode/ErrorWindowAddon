@@ -63,11 +63,11 @@ public class ErrorWindow extends Dialog {
 	private boolean productionMode;
 
 	public ErrorWindow(final Throwable cause) {
-		this(cause, null, false);
+		this(cause, null, isProductionMode());
 	}
 
 	public ErrorWindow(final Throwable cause, final String errorMessage) {
-		this(cause, errorMessage, false);
+		this(cause, errorMessage, isProductionMode());
 	}
 
 	public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode) {
@@ -80,8 +80,12 @@ public class ErrorWindow extends Dialog {
 		initWindow();
 	}
 	
-	public ErrorWindow(ErrorDetails errorDetails, boolean productionMode) {
-		this(errorDetails.getThrowable(),errorDetails.getCause(),productionMode);
+	public ErrorWindow(ErrorDetails errorDetails) {
+		this(errorDetails.getThrowable(), errorDetails.getCause());
+	}
+
+	private static boolean isProductionMode() {
+		return ("true".equals(System.getProperty("productionMode")));
 	}
 
 	private void initWindow() {
