@@ -63,11 +63,11 @@ public class ErrorWindow extends Dialog {
 	private boolean productionMode;
 
 	public ErrorWindow(final Throwable cause) {
-		this(cause, null, false);
+		this(cause, null, isProductionMode());
 	}
 
 	public ErrorWindow(final Throwable cause, final String errorMessage) {
-		this(cause, errorMessage, false);
+		this(cause, errorMessage, isProductionMode());
 	}
 
 	public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode) {
@@ -80,8 +80,16 @@ public class ErrorWindow extends Dialog {
 		initWindow();
 	}
 	
+	public ErrorWindow(ErrorDetails errorDetails) {
+		this(errorDetails.getThrowable(), errorDetails.getCause());
+	}
+
 	public ErrorWindow(ErrorDetails errorDetails, boolean productionMode) {
-		this(errorDetails.getThrowable(),errorDetails.getCause(),productionMode);
+		this(errorDetails.getThrowable(), errorDetails.getCause(), productionMode);
+	}
+
+	private static boolean isProductionMode() {
+		return ErrorManager.getErrorWindowFactory().isProductionMode();
 	}
 
 	private void initWindow() {
@@ -101,7 +109,7 @@ public class ErrorWindow extends Dialog {
 		mainLayout.setSpacing(false);
 		mainLayout.setPadding(false);
 		mainLayout.setMargin(false);
-	   
+
 		final Html title = new Html(DEFAULT_CAPTION);
 		title.getElement().getStyle().set("width", "100%");
 		mainLayout.add(title);
