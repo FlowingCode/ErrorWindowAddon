@@ -23,7 +23,7 @@ public class DefaultErrorWindowFactory implements ErrorWindowFactory {
 
 	@Override
 	public void showError(ErrorDetails details) {
-		ErrorWindow w = new ErrorWindow(details, isProductionMode());
+		ErrorWindow w = new ErrorWindow(details);
 		w.open();
 	}
 
