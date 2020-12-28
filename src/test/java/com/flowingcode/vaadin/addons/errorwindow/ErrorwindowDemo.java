@@ -49,6 +49,21 @@ public class ErrorwindowDemo extends VerticalLayout {
 			}
 		});
 
+		Button throwErrorWithCustomMessageAndCustomTexts = new Button("Throw Error with custom message (custom labels)", ev -> {
+			try {
+				Integer.parseInt("asdf");
+			} catch (NumberFormatException e) {
+				ErrorWindowI18n i18n = ErrorWindowI18n.createDefault();
+				i18n.setCaption("Uh oh... that's embarrassing");
+				i18n.setInstructions("Please pass this unique error identifier to your administrator");
+				i18n.setClose("Ok");
+				i18n.setDetails("Show me technical details");
+				i18n.setDefaultErrorMessage("Something really strange happened");
+				ErrorWindow w = new ErrorWindow(e, "CUSTOM ERROR MESSAGE", i18n);
+				w.open();
+			}
+		});
+
 		Checkbox productionModeCb = new Checkbox("Production Mode");
 		productionModeCb.addValueChangeListener(e -> {
 			System.setProperty("productionMode", "" + productionModeCb.getValue().toString());
@@ -56,7 +71,7 @@ public class ErrorwindowDemo extends VerticalLayout {
 		});
 
 		setSizeFull();
-		add(productionModeCb, errorButton, throwErrorWithoutErrorHandler, throwErrorWithCustomMessage);
+		add(productionModeCb, errorButton, throwErrorWithoutErrorHandler, throwErrorWithCustomMessageAndCustomTexts, throwErrorWithCustomMessage);
 	}
 
 }
