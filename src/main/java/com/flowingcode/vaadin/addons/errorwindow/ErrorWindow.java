@@ -46,134 +46,134 @@ import com.vaadin.flow.component.textfield.TextArea;
 @SuppressWarnings("serial")
 public class ErrorWindow extends Dialog {
 
-    private static final Logger logger = LoggerFactory.getLogger(ErrorWindow.class);
+	private static final Logger logger = LoggerFactory.getLogger(ErrorWindow.class);
 
-    private static final String DEFAULT_CAPTION = "<h3 style='margin-top:0px;text-align:center'>An error has occurred</h3>";
+	private static final String DEFAULT_CAPTION = "<h3 style='margin-top:0px;text-align:center'>An error has occurred</h3>";
 
-    private static final String DEFAULT_ERROR_LABEL_MESSAGE = "Please contact the system administrator for more information.";
+	private static final String DEFAULT_ERROR_LABEL_MESSAGE = "Please contact the system administrator for more information.";
 
-    private VerticalLayout exceptionTraceLayout;
+	private VerticalLayout exceptionTraceLayout;
 
-    private final Throwable cause;
+	private final Throwable cause;
 
-    private final String errorMessage;
+	private final String errorMessage;
 
-    private final String uuid;
+	private final String uuid;
 
 	private boolean productionMode;
 
-    public ErrorWindow(final Throwable cause) {
-        this(cause, null, false);
-    }
+	public ErrorWindow(final Throwable cause) {
+		this(cause, null, false);
+	}
 
-    public ErrorWindow(final Throwable cause, final String errorMessage) {
-        this(cause, errorMessage, false);
-    }
+	public ErrorWindow(final Throwable cause, final String errorMessage) {
+		this(cause, errorMessage, false);
+	}
 
-    public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode) {
-        super();
+	public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode) {
+		super();
 
-        uuid = UUID.randomUUID().toString();
-        this.cause = cause;
-        this.errorMessage = errorMessage;
-        this.productionMode = productionMode;
-        initWindow();
-    }
-    
-    public ErrorWindow(ErrorDetails errorDetails, boolean productionMode) {
-    	this(errorDetails.getThrowable(),errorDetails.getCause(),productionMode);
-    }
+		uuid = UUID.randomUUID().toString();
+		this.cause = cause;
+		this.errorMessage = errorMessage;
+		this.productionMode = productionMode;
+		initWindow();
+	}
+	
+	public ErrorWindow(ErrorDetails errorDetails, boolean productionMode) {
+		this(errorDetails.getThrowable(),errorDetails.getCause(),productionMode);
+	}
 
-    private void initWindow() {
-    	if (logger.isErrorEnabled()) {
-            logger.error(String.format("Error occurred %s", uuid), cause);
-    	}
-        setWidth("800px");
-        setCloseOnEsc(true);
-        add(createMainLayout());
-    }
+	private void initWindow() {
+		if (logger.isErrorEnabled()) {
+			logger.error(String.format("Error occurred %s", uuid), cause);
+		}
+		setWidth("800px");
+		setCloseOnEsc(true);
+		add(createMainLayout());
+	}
 
-    /**
-     * Creates the main layout of the ErrorWindow.
-     */
-    private VerticalLayout createMainLayout() {
-        final VerticalLayout mainLayout = new VerticalLayout();
-        mainLayout.setSpacing(false);
-        mainLayout.setPadding(false);
-        mainLayout.setMargin(false);
-       
-        final Html title = new Html(DEFAULT_CAPTION);
-        title.getElement().getStyle().set("width", "100%");
-        mainLayout.add(title);
-        
-        final Html errorLabel = createErrorLabel();
-        mainLayout.add(errorLabel);
-        mainLayout.setHorizontalComponentAlignment(Alignment.START,errorLabel);
+	/**
+	 * Creates the main layout of the ErrorWindow.
+	 */
+	private VerticalLayout createMainLayout() {
+		final VerticalLayout mainLayout = new VerticalLayout();
+		mainLayout.setSpacing(false);
+		mainLayout.setPadding(false);
+		mainLayout.setMargin(false);
+	   
+		final Html title = new Html(DEFAULT_CAPTION);
+		title.getElement().getStyle().set("width", "100%");
+		mainLayout.add(title);
+		
+		final Html errorLabel = createErrorLabel();
+		mainLayout.add(errorLabel);
+		mainLayout.setHorizontalComponentAlignment(Alignment.START,errorLabel);
 
-        HorizontalLayout buttonsLayout = new HorizontalLayout();
-        buttonsLayout.setSpacing(true);
-        buttonsLayout.setPadding(false);
-        buttonsLayout.setMargin(false);
-        
-        if (!productionMode) {
-        	Button button = createDetailsButtonLayout();
-        	buttonsLayout.add(button);
-            mainLayout.add(createExceptionTraceLayout());
-        }
+		HorizontalLayout buttonsLayout = new HorizontalLayout();
+		buttonsLayout.setSpacing(true);
+		buttonsLayout.setPadding(false);
+		buttonsLayout.setMargin(false);
+		
+		if (!productionMode) {
+			Button button = createDetailsButtonLayout();
+			buttonsLayout.add(button);
+			mainLayout.add(createExceptionTraceLayout());
+		}
 
-        final Button closeButton = new Button("Close", event -> close());
-        buttonsLayout.add(closeButton);
-        mainLayout.add(buttonsLayout);
-        mainLayout.setHorizontalComponentAlignment(Alignment.END, buttonsLayout);
-        
-        return mainLayout;
-    }
+		final Button closeButton = new Button("Close", event -> close());
+		buttonsLayout.add(closeButton);
+		mainLayout.add(buttonsLayout);
+		mainLayout.setHorizontalComponentAlignment(Alignment.END, buttonsLayout);
+		
+		return mainLayout;
+	}
 
-    private Button createDetailsButtonLayout() {
-        final Button errorDetailsButton = new Button("Show error detail", event -> {
-    		boolean visible = !exceptionTraceLayout.isVisible();
-        	exceptionTraceLayout.setVisible(visible);
-        	if(visible) {
-        		event.getSource().setIcon(VaadinIcon.MINUS.create());
-        	} else {
-                event.getSource().setIcon(VaadinIcon.PLUS.create());
-        	}
-        });
-        errorDetailsButton.setIcon(VaadinIcon.PLUS.create());
-        return errorDetailsButton;
-    }
+	private Button createDetailsButtonLayout() {
+		final Button errorDetailsButton = new Button("Show error detail", event -> {
+			boolean visible = !exceptionTraceLayout.isVisible();
+			exceptionTraceLayout.setVisible(visible);
+			if(visible) {
+				event.getSource().setIcon(VaadinIcon.MINUS.create());
+			} else {
+				event.getSource().setIcon(VaadinIcon.PLUS.create());
+			}
+		});
+		errorDetailsButton.setIcon(VaadinIcon.PLUS.create());
+		return errorDetailsButton;
+	}
 
-    
-    private VerticalLayout createExceptionTraceLayout() {
-        exceptionTraceLayout = new VerticalLayout();
-        exceptionTraceLayout.setSpacing(false);
-        exceptionTraceLayout.setMargin(false);
-        exceptionTraceLayout.setPadding(false);
-        exceptionTraceLayout.add(createStackTraceArea());
-        exceptionTraceLayout.setVisible(false);
-        return exceptionTraceLayout;
-    }
+	
+	private VerticalLayout createExceptionTraceLayout() {
+		exceptionTraceLayout = new VerticalLayout();
+		exceptionTraceLayout.setSpacing(false);
+		exceptionTraceLayout.setMargin(false);
+		exceptionTraceLayout.setPadding(false);
+		exceptionTraceLayout.add(createStackTraceArea());
+		exceptionTraceLayout.setVisible(false);
+		return exceptionTraceLayout;
+	}
 
-    protected TextArea createStackTraceArea() {
-        final TextArea area = new TextArea();
-        area.setWidthFull();
-        area.setHeight("15em");
-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        final PrintWriter pw = new PrintWriter(baos);
-        cause.printStackTrace(pw);
-        pw.flush();
-        area.setValue(baos.toString());
-        return area;
-    }
+	protected TextArea createStackTraceArea() {
+		final TextArea area = new TextArea();
+		area.setWidthFull();
+		area.setHeight("15em");
+		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		final PrintWriter pw = new PrintWriter(baos);
+		cause.printStackTrace(pw);
+		pw.flush();
+		area.setValue(baos.toString());
+		return area;
+	}
 
-    protected Html createErrorLabel() {
-        String label = errorMessage == null ? DEFAULT_ERROR_LABEL_MESSAGE : errorMessage;
-        if (productionMode) {
-            label = label.concat(String.format("<br />Please report the following code to system administrator:<h4><p><center>%s<center/></p></h4>", uuid));
-        }
-        final Html errorLabel = new Html("<span>" + label + "</span>");
-        errorLabel.getElement().getStyle().set("width", "100%");
-        return errorLabel;
-    }
+	protected Html createErrorLabel() {
+		String label = errorMessage == null ? DEFAULT_ERROR_LABEL_MESSAGE : errorMessage;
+		if (productionMode) {
+			label = label.concat(String.format("<br />Please report the following code to system administrator:<h4><p><center>%s<center/></p></h4>", uuid));
+		}
+		final Html errorLabel = new Html("<span>" + label + "</span>");
+		errorLabel.getElement().getStyle().set("width", "100%");
+		return errorLabel;
+	}
 
 }
