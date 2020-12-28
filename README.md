@@ -29,10 +29,10 @@ Official releases of this add-on are available through Vaadin Directory.
 
 ## Building and running demo
 
-git clone https://github.com/FlowingCode/error-window-addon
-mvn clean install
-cd demo
-mvn jetty:run
+- git clone https://github.com/FlowingCode/error-window-addon
+- mvn clean install
+- cd demo
+- mvn jetty:run
 
 To see the demo, navigate to http://localhost:8080/
 
