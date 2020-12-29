@@ -94,6 +94,10 @@ public class ErrorWindow extends Dialog {
 		this(errorDetails, ErrorWindowI18n.createDefault());
 	}
 
+	public ErrorWindow(ErrorDetails errorDetails, boolean productionMode) {
+		this(errorDetails.getThrowable(), errorDetails.getCause(), isProductionMode(), ErrorWindowI18n.createDefault());
+	}
+	
 	public ErrorWindow(ErrorDetails errorDetails, final ErrorWindowI18n i18n) {
 		this(errorDetails.getThrowable(), errorDetails.getCause(), i18n);
 	}
