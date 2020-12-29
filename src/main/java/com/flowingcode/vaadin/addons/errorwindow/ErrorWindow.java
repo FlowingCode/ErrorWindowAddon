@@ -99,7 +99,7 @@ public class ErrorWindow extends Dialog {
 	}
 
 	private static boolean isProductionMode() {
-		return ("true".equals(System.getProperty("productionMode")));
+		return ErrorManager.getErrorWindowFactory().isProductionMode();
 	}
 
 	private void initWindow() {

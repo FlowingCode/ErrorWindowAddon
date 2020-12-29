@@ -39,5 +39,9 @@ public final class ErrorManager {
 	public static void setErrorWindowFactory(ErrorWindowFactory errorWindowFactory) {
 		ErrorManager.errorWindowFactory = errorWindowFactory;
 	}
+	
+	public static ErrorWindowFactory getErrorWindowFactory() {
+		return errorWindowFactory;
+	}
 
 }
