@@ -20,6 +20,8 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.server.ErrorEvent;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
 
@@ -31,8 +33,14 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
   public void serviceInit(ServiceInitEvent event) {
     event
         .getSource()
-        .addSessionInitListener(
-            ev ->
-                ev.getSession().setErrorHandler(ev2 -> ErrorManager.showError(ev2.getThrowable())));
+        .addSessionInitListener(ev -> ev.getSession().setErrorHandler(this::handleError));
+  }
+
+  private void handleError(ErrorEvent event) {
+    if (UI.getCurrent() != null) {
+      ErrorManager.showError(event.getThrowable());
+    } else {
+      event.getThrowable().printStackTrace();
+    }
   }
 }
