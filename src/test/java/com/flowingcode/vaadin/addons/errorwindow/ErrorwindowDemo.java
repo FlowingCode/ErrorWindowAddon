@@ -27,51 +27,70 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 @SuppressWarnings("serial")
 public class ErrorwindowDemo extends VerticalLayout {
 
-	public ErrorwindowDemo() {
-		Button errorButton = new Button("Throw Error", event -> {
-			Integer.parseInt("asdf");
-		});
+  public ErrorwindowDemo() {
+    Button errorButton =
+        new Button(
+            "Throw Error",
+            event -> {
+              Integer.parseInt("asdf");
+            });
 
-		Button throwErrorWithoutErrorHandler = new Button("Throw Error without an error handler", ev -> {
-			try {
-				Integer.parseInt("asdf");
-			} catch (NumberFormatException e) {
-				ErrorManager.showError(e);
-			}
-		});
+    Button throwErrorWithoutErrorHandler =
+        new Button(
+            "Throw Error without an error handler",
+            ev -> {
+              try {
+                Integer.parseInt("asdf");
+              } catch (NumberFormatException e) {
+                ErrorManager.showError(e);
+              }
+            });
 
-		Button throwErrorWithCustomMessage = new Button("Throw Error with custom message", ev -> {
-			try {
-				Integer.parseInt("asdf");
-			} catch (NumberFormatException e) {
-				ErrorWindow w = new ErrorWindow(e, "CUSTOM ERROR MESSAGE");
-				w.open();
-			}
-		});
+    Button throwErrorWithCustomMessage =
+        new Button(
+            "Throw Error with custom message",
+            ev -> {
+              try {
+                Integer.parseInt("asdf");
+              } catch (NumberFormatException e) {
+                ErrorWindow w = new ErrorWindow(e, "CUSTOM ERROR MESSAGE");
+                w.open();
+              }
+            });
 
-		Button throwErrorWithCustomMessageAndCustomTexts = new Button("Throw Error with custom message (custom labels)", ev -> {
-			try {
-				Integer.parseInt("asdf");
-			} catch (NumberFormatException e) {
-				ErrorWindowI18n i18n = ErrorWindowI18n.createDefault();
-				i18n.setCaption("Uh oh... that's embarrassing");
-				i18n.setInstructions("Please pass this unique error identifier to your administrator");
-				i18n.setClose("Ok");
-				i18n.setDetails("Show me technical details");
-				i18n.setDefaultErrorMessage("Something really strange happened");
-				ErrorWindow w = new ErrorWindow(e, "CUSTOM ERROR MESSAGE", i18n);
-				w.open();
-			}
-		});
+    Button throwErrorWithCustomMessageAndCustomTexts =
+        new Button(
+            "Throw Error with custom message (custom labels)",
+            ev -> {
+              try {
+                Integer.parseInt("asdf");
+              } catch (NumberFormatException e) {
+                ErrorWindowI18n i18n = ErrorWindowI18n.createDefault();
+                i18n.setCaption("Uh oh... that's embarrassing");
+                i18n.setInstructions(
+                    "Please pass this unique error identifier to your administrator");
+                i18n.setClose("Ok");
+                i18n.setDetails("Show me technical details");
+                i18n.setDefaultErrorMessage("Something really strange happened");
+                ErrorWindow w = new ErrorWindow(e, "CUSTOM ERROR MESSAGE", i18n);
+                w.open();
+              }
+            });
 
-		Checkbox productionModeCb = new Checkbox("Production Mode");
-		productionModeCb.addValueChangeListener(e -> {
-			System.setProperty("productionMode", "" + productionModeCb.getValue().toString());
-			Notification.show("Currently production mode is: " + System.getProperty("productionMode"));
-		});
+    Checkbox productionModeCb = new Checkbox("Production Mode");
+    productionModeCb.addValueChangeListener(
+        e -> {
+          System.setProperty("productionMode", "" + productionModeCb.getValue().toString());
+          Notification.show(
+              "Currently production mode is: " + System.getProperty("productionMode"));
+        });
 
-		setSizeFull();
-		add(productionModeCb, errorButton, throwErrorWithoutErrorHandler, throwErrorWithCustomMessageAndCustomTexts, throwErrorWithCustomMessage);
-	}
-
+    setSizeFull();
+    add(
+        productionModeCb,
+        errorButton,
+        throwErrorWithoutErrorHandler,
+        throwErrorWithCustomMessageAndCustomTexts,
+        throwErrorWithCustomMessage);
+  }
 }
