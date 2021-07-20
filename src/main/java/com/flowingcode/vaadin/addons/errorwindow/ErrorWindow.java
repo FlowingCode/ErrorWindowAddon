@@ -115,6 +115,7 @@ public class ErrorWindow extends Dialog {
     }
     setWidth("800px");
     setCloseOnEsc(true);
+    setResizable(true);
     add(createMainLayout());
   }
 
