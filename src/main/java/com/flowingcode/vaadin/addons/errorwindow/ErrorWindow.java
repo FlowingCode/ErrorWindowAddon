@@ -129,7 +129,9 @@ public class ErrorWindow extends Dialog {
     final Html title =
         new Html(
             String.format(
-                "<h3 style='margin-top:0px;text-align:center'>%s</h3>", i18n.getCaption()));
+                "<h1 style='margin-top: 0; text-align: center; font-size: var(--lumo-font-size-xl);'>%s</h1>",
+                i18n.getCaption()));
+
     title.getElement().getStyle().set("width", "100%");
     mainLayout.add(title);
 
@@ -201,7 +203,8 @@ public class ErrorWindow extends Dialog {
       label =
           label.concat(
               String.format(
-                  "<br />%s<h4><p><center>%s<center/></p></h4>", i18n.getInstructions(), uuid));
+                  "<br />%s<div style='text-align: center; font-weight: 600; font-size: var(--lumo-font-size-l); margin-top: 1em;'>%s</div>",
+                  i18n.getInstructions(), uuid));
     }
     final Html errorLabel = new Html("<span>" + label + "</span>");
     errorLabel.getElement().getStyle().set("width", "100%");
