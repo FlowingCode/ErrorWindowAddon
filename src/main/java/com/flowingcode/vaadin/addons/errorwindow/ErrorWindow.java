@@ -20,6 +20,7 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -188,7 +189,7 @@ public class ErrorWindow extends Dialog {
     return exceptionTraceLayout;
   }
 
-  protected TextArea createStackTraceArea() {
+  protected Component createStackTraceArea() {
     final TextArea area = new TextArea();
     area.setWidthFull();
     area.setHeight("15em");
