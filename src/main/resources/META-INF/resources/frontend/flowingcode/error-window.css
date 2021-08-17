@@ -1,0 +1,12 @@
+[theme~="error-window"] .title {
+  margin-top: 0;
+  text-align: center;
+  font-size: var(--lumo-font-size-xl);
+}
+
+[theme~="error-window"] .uuid {
+  text-align: center;
+  font-weight: 600;
+  font-size: var(--lumo-font-size-l);
+  margin-top: 1em;	
+}

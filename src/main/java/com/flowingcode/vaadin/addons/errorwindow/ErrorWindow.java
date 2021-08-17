@@ -22,6 +22,7 @@ package com.flowingcode.vaadin.addons.errorwindow;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
@@ -42,6 +43,7 @@ import org.slf4j.LoggerFactory;
  * @author pbartolo
  */
 @SuppressWarnings("serial")
+@CssImport(value = "./flowingcode/error-window.css")
 public class ErrorWindow extends Dialog {
 
   private static final Logger logger = LoggerFactory.getLogger(ErrorWindow.class);
@@ -116,6 +118,7 @@ public class ErrorWindow extends Dialog {
     setWidth("800px");
     setCloseOnEsc(true);
     setResizable(true);
+    getElement().getThemeList().add("error-window");
     add(createMainLayout());
   }
 
@@ -129,7 +132,7 @@ public class ErrorWindow extends Dialog {
     final Html title =
         new Html(
             String.format(
-                "<h1 style='margin-top: 0; text-align: center; font-size: var(--lumo-font-size-xl);'>%s</h1>",
+                "<h1 class='title'>%s</h1>",
                 i18n.getCaption()));
 
     title.getElement().getStyle().set("width", "100%");
@@ -203,7 +206,7 @@ public class ErrorWindow extends Dialog {
       label =
           label.concat(
               String.format(
-                  "<br />%s<div style='text-align: center; font-weight: 600; font-size: var(--lumo-font-size-l); margin-top: 1em;'>%s</div>",
+                  "<br />%s<div class='uuid'>%s</div>",
                   i18n.getInstructions(), uuid));
     }
     final Html errorLabel = new Html("<span>" + label + "</span>");
