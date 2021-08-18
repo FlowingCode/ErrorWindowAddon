@@ -20,9 +20,17 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+
 public final class ErrorManager {
 
-  private static ErrorWindowFactory errorWindowFactory = new DefaultErrorWindowFactory();
+  private static final Map<Class<?>, ErrorWindowFactory> factories = new ConcurrentHashMap<>();
+
+  static {
+    factories.put(Object.class, new DefaultErrorWindowFactory());
+  }
 
   private ErrorManager() {
     throw new IllegalStateException("Utility class not meant to be instantiated");
@@ -34,14 +42,25 @@ public final class ErrorManager {
 
   public static void showError(Throwable throwable, String cause) {
     ErrorDetails details = new ErrorDetails(throwable, cause);
-    errorWindowFactory.showError(details);
+    getErrorWindowFactory(throwable.getClass()).showError(details);
+  }
+
+  public static void setErrorWindowFactory(Class<? extends Throwable> clazz,
+      ErrorWindowFactory errorWindowFactory) {
+    factories.put(clazz.asSubclass(Throwable.class), errorWindowFactory);
+  }
+
+  public static ErrorWindowFactory getErrorWindowFactory(Class<?> clazz) {
+    return Optional.ofNullable(factories.get(clazz))
+        .orElseGet(() -> getErrorWindowFactory(clazz.getSuperclass()));
   }
 
   public static void setErrorWindowFactory(ErrorWindowFactory errorWindowFactory) {
-    ErrorManager.errorWindowFactory = errorWindowFactory;
+    factories.put(Throwable.class, errorWindowFactory);
   }
 
   public static ErrorWindowFactory getErrorWindowFactory() {
-    return errorWindowFactory;
+    return getErrorWindowFactory(Throwable.class);
   }
+
 }
