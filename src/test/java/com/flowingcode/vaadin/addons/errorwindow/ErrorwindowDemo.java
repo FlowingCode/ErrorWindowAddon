@@ -20,6 +20,7 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.notification.Notification;
@@ -93,5 +94,8 @@ public class ErrorwindowDemo extends VerticalLayout {
         throwErrorWithoutErrorHandler,
         throwErrorWithCustomMessageAndCustomTexts,
         throwErrorWithCustomMessage);
+
+    add(new Button("Navigation error",
+        ev -> UI.getCurrent().navigate(ThrowInConstructorView.class)));
   }
 }

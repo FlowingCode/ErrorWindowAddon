@@ -21,9 +21,14 @@
 package com.flowingcode.vaadin.addons.errorwindow;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.router.InternalServerError;
 import com.vaadin.flow.server.ErrorEvent;
 import com.vaadin.flow.server.ServiceInitEvent;
+import com.vaadin.flow.server.VaadinContext;
+import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinServiceInitListener;
+import com.vaadin.flow.server.startup.ApplicationRouteRegistry;
+import java.util.Collections;
 
 public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener {
 
@@ -34,6 +39,17 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
     event
         .getSource()
         .addSessionInitListener(ev -> ev.getSession().setErrorHandler(this::handleError));
+    registerErrorView(event.getSource());
+  }
+
+  private void registerErrorView(VaadinService source) {
+    VaadinContext context = VaadinService.getCurrent().getContext();
+    ApplicationRouteRegistry registry = ApplicationRouteRegistry.getInstance(context);
+    Class<?> configuredExceptionHandler =
+        registry.getConfiguration().getExceptionHandlerByClass(Exception.class);
+    if (configuredExceptionHandler == InternalServerError.class) {
+      registry.setErrorNavigationTargets(Collections.singleton(ErrorView.class));
+    }
   }
 
   private void handleError(ErrorEvent event) {
