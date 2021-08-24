@@ -129,6 +129,7 @@ public class ErrorWindow extends Dialog {
     mainLayout.setSpacing(false);
     mainLayout.setPadding(false);
     mainLayout.setMargin(false);
+    mainLayout.setSizeFull();
 
     final Html title =
         new Html(
@@ -180,12 +181,15 @@ public class ErrorWindow extends Dialog {
   }
 
   private VerticalLayout createExceptionTraceLayout() {
+    Component stackTraceArea = createStackTraceArea();
     exceptionTraceLayout = new VerticalLayout();
     exceptionTraceLayout.setSpacing(false);
     exceptionTraceLayout.setMargin(false);
     exceptionTraceLayout.setPadding(false);
-    exceptionTraceLayout.add(createStackTraceArea());
+    exceptionTraceLayout.add(stackTraceArea);
+    exceptionTraceLayout.setFlexGrow(1, stackTraceArea);
     exceptionTraceLayout.setVisible(false);
+    exceptionTraceLayout.getElement().getStyle().set("flex-grow", "1");
     return exceptionTraceLayout;
   }
 
