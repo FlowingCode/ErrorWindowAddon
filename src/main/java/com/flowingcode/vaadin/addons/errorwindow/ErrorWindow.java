@@ -118,7 +118,6 @@ public class ErrorWindow extends Dialog {
     }
     setWidth("800px");
     setCloseOnEsc(true);
-    setResizable(true);
     setDraggable(true);
     getElement().getThemeList().add("error-window");
     add(createMainLayout());
@@ -176,6 +175,7 @@ public class ErrorWindow extends Dialog {
               } else {
                 event.getSource().setIcon(VaadinIcon.PLUS.create());
               }
+              setResizable(visible);
               event.getSource().getElement()
                   .executeJs(
                       "var overlay = this.closest('vaadin-dialog-overlay'); if (overlay) overlay.$.overlay.style.height=''");
