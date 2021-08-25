@@ -25,11 +25,11 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.util.UUID;
@@ -190,14 +190,15 @@ public class ErrorWindow extends Dialog {
   }
 
   protected Component createStackTraceArea() {
-    final TextArea area = new TextArea();
+    final Div area = new Div();
+    area.setClassName("stacktrace");
     area.setWidthFull();
     area.setHeight("15em");
     final ByteArrayOutputStream baos = new ByteArrayOutputStream();
     final PrintWriter pw = new PrintWriter(baos);
     cause.printStackTrace(pw);
     pw.flush();
-    area.setValue(baos.toString());
+    area.add(baos.toString());
     return area;
   }
 

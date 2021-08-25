@@ -10,3 +10,14 @@
   font-size: var(--lumo-font-size-l);
   margin-top: 1em;	
 }
+
+[theme~="error-window"] .stacktrace {
+  white-space: pre;
+  background: rgba(26, 57, 96, 0.1);
+  overflow: auto;
+  padding: 0.25em 0.625em;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 4px 0;
+  box-sizing: border-box;
+}
