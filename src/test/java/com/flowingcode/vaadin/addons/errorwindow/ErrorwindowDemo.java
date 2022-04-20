@@ -21,12 +21,16 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+import com.flowingcode.vaadin.addons.demo.DemoSource;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
 
+@PageTitle("Error Window Demo")
+@DemoSource
 @SuppressWarnings("serial")
 public class ErrorwindowDemo extends VerticalLayout {
 
