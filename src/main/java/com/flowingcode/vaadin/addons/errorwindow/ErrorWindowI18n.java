@@ -33,6 +33,7 @@ public class ErrorWindowI18n {
   private String close;
   private String details;
   private String defaultErrorMessage;
+  private String clipboard;
 
   private ErrorWindowI18n() {
     this.caption = "An error has occurred";
@@ -40,6 +41,7 @@ public class ErrorWindowI18n {
     this.close = "Close";
     this.details = "Show error details";
     this.defaultErrorMessage = "Please contact the system administrator for more information.";
+    this.clipboard = "Copy details to clipboard";
   }
 
   /** @return a new instance with the default messages */
@@ -102,4 +104,15 @@ public class ErrorWindowI18n {
   public String getDefaultErrorMessage() {
     return this.defaultErrorMessage;
   }
+
+  /** @return returns the text for the "Copy details to clipboard" button. */
+  public String getClipboard() {
+    return clipboard;
+  }
+
+  /** Sets the text for the "Copy details to clipboard" button. */
+  public void setClipboard(String clipboard) {
+    this.clipboard = clipboard;
+  }
+  
 }

@@ -23,6 +23,7 @@ package com.flowingcode.vaadin.addons.errorwindow;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
@@ -35,6 +36,7 @@ import java.io.PrintWriter;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vaadin.olli.ClipboardHelper;
 
 /**
  * Component to visualize an error, caused by an exception, as a modal sub-window. <br>
@@ -145,11 +147,21 @@ public class ErrorWindow extends Dialog {
     mainLayout.setHorizontalComponentAlignment(Alignment.START, errorLabel);
 
     HorizontalLayout buttonsLayout = new HorizontalLayout();
+    buttonsLayout.setWidthFull();
     buttonsLayout.setSpacing(true);
     buttonsLayout.setPadding(false);
     buttonsLayout.setMargin(false);
 
     if (!productionMode) {
+      // copy details to clipboard button
+      Button clipboarButton = new Button(i18n.getClipboard());
+      clipboarButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+      ClipboardHelper clipboardHelper = new ClipboardHelper(getStackTrace(), clipboarButton);
+      buttonsLayout.add(clipboardHelper);
+      buttonsLayout.setAlignSelf(Alignment.START, clipboardHelper);
+      buttonsLayout.setFlexGrow(1.0, clipboardHelper);
+            
+      // show details button
       Button button = createDetailsButtonLayout();
       buttonsLayout.add(button);
       mainLayout.add(createExceptionTraceLayout());
@@ -202,14 +214,18 @@ public class ErrorWindow extends Dialog {
     area.setClassName("stacktrace");
     area.setWidthFull();
     area.setHeight("15em");
+    area.add(getStackTrace());
+    return area;
+  }
+
+  private String getStackTrace() {
     final ByteArrayOutputStream baos = new ByteArrayOutputStream();
     final PrintWriter pw = new PrintWriter(baos);
     cause.printStackTrace(pw);
     pw.flush();
-    area.add(baos.toString());
-    return area;
+    return baos.toString();
   }
-
+  
   protected Html createErrorLabel() {
     String label = errorMessage == null ? i18n.getDefaultErrorMessage() : errorMessage;
     if (productionMode) {
