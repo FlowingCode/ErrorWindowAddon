@@ -147,13 +147,14 @@ public class ErrorWindow extends Dialog {
     mainLayout.add(errorLabel);
     mainLayout.setHorizontalComponentAlignment(Alignment.START, errorLabel);
 
-    HorizontalLayout buttonsLayout = new HorizontalLayout();
-    buttonsLayout.setWidthFull();
+    HorizontalLayout buttonsLayout = new HorizontalLayout();    
     buttonsLayout.setSpacing(true);
     buttonsLayout.setPadding(false);
     buttonsLayout.setMargin(false);
 
     if (!productionMode) {
+      buttonsLayout.setWidthFull();
+
       // copy details to clipboard button
       Button clipboarButton = new Button(i18n.getClipboard());
       clipboarButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
@@ -161,7 +162,7 @@ public class ErrorWindow extends Dialog {
       buttonsLayout.add(clipboardHelper);
       buttonsLayout.setAlignSelf(Alignment.START, clipboardHelper);
       buttonsLayout.setFlexGrow(1.0, clipboardHelper);
-            
+
       // show details button
       Button button = createDetailsButtonLayout();
       buttonsLayout.add(button);
