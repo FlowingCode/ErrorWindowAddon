@@ -26,7 +26,6 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -48,7 +47,6 @@ import org.vaadin.olli.ClipboardHelper;
  * @author pbartolo
  */
 @SuppressWarnings("serial")
-@Uses(ClipboardHelper.class)
 @CssImport(value = "./flowingcode/error-window.css")
 public class ErrorWindow extends Dialog {
 
