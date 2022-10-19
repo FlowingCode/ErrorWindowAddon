@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,9 +32,11 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.shared.Registration;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.util.UUID;
+import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vaadin.olli.ClipboardHelper;
@@ -63,6 +65,8 @@ public class ErrorWindow extends Dialog {
   private boolean productionMode;
 
   private ErrorWindowI18n i18n;
+
+  private Registration attachListenerRegistration;
 
   public ErrorWindow(final Throwable cause) {
     this(cause, null, isProductionMode(), ErrorWindowI18n.createDefault());
@@ -96,7 +100,22 @@ public class ErrorWindow extends Dialog {
     this.errorMessage = errorMessage;
     this.productionMode = productionMode;
     this.i18n = i18n;
-    initWindow();
+
+    attachListenerRegistration = addAttachListener(ev -> {
+      attachListenerRegistration = null;
+      ev.unregisterListener();
+      initWindow();
+    });
+  }
+
+  @Override
+  public Stream<Component> getChildren() {
+    if (attachListenerRegistration != null) {
+      attachListenerRegistration.remove();
+      attachListenerRegistration = null;
+      initWindow();
+    }
+    return super.getChildren();
   }
 
   public ErrorWindow(ErrorDetails errorDetails) {
