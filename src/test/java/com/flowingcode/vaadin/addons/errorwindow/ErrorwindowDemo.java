@@ -27,6 +27,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.router.PageTitle;
 
 @PageTitle("Error Window Demo")
@@ -92,6 +93,11 @@ public class ErrorwindowDemo extends VerticalLayout {
               "Currently production mode is: " + System.getProperty("productionMode"));
         });
 
+    Upload upload = new Upload(new NullMemoryBuffer());
+    upload.addSucceededListener(ev -> {
+      throw new UnsupportedOperationException("File upload is not allowed");
+    });
+
     setSizeFull();
     add(
         productionModeCb,
@@ -102,5 +108,8 @@ public class ErrorwindowDemo extends VerticalLayout {
 
     add(new Button("Navigation error",
         ev -> UI.getCurrent().navigate(ThrowInConstructorView.class)));
+
+    add(upload);
+
   }
 }

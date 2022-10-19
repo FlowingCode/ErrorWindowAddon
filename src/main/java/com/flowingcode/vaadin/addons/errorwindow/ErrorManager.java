@@ -21,6 +21,7 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+import com.vaadin.flow.server.UploadException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,6 +32,14 @@ public final class ErrorManager {
 
   static {
     factories.put(Object.class, new DefaultErrorWindowFactory());
+    factories.put(UploadException.class, details -> {
+      Throwable cause = details.getThrowable().getCause();
+      if (cause != null) {
+        showError(cause);
+      } else {
+        getErrorWindowFactory(Exception.class).showError(details);
+      }
+    });
   }
 
   private ErrorManager() {
