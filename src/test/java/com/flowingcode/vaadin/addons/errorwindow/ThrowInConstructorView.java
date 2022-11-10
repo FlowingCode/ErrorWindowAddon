@@ -21,7 +21,9 @@ package com.flowingcode.vaadin.addons.errorwindow;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.Route;
+import org.junit.Ignore;
 
+@Ignore
 @Route("error-window/throw")
 public class ThrowInConstructorView extends Div {
 
