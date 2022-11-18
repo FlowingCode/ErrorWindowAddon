@@ -29,9 +29,11 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
 
-@PageTitle("Error Window Demo")
 @DemoSource
+@PageTitle("Error Window Demo")
+@Route(value = "error-window/error-window", layout = ErrorwindowDemoView.class)
 @SuppressWarnings("serial")
 public class ErrorwindowDemo extends VerticalLayout {
 

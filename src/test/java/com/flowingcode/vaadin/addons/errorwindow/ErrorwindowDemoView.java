@@ -24,15 +24,17 @@ package com.flowingcode.vaadin.addons.errorwindow;
 import com.flowingcode.vaadin.addons.DemoLayout;
 import com.flowingcode.vaadin.addons.GithubLink;
 import com.flowingcode.vaadin.addons.demo.TabbedDemo;
+import com.vaadin.flow.router.ParentLayout;
 import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
-@Route(value = "error-window", layout = DemoLayout.class)
+@ParentLayout(DemoLayout.class)
+@Route("error-window")
 @GithubLink("https://github.com/FlowingCode/ErrorWindowAddon")
 public class ErrorwindowDemoView extends TabbedDemo {
 
   public ErrorwindowDemoView() {
-    addDemo(new ErrorwindowDemo());
+    addDemo(ErrorwindowDemo.class);
     setSizeFull();
   }
 }
