@@ -23,6 +23,7 @@ package com.flowingcode.vaadin.addons.errorwindow;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -39,7 +40,6 @@ import java.util.UUID;
 import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.vaadin.olli.ClipboardHelper;
 
 /**
  * Component to visualize an error, caused by an exception, as a modal sub-window. <br>
@@ -177,10 +177,10 @@ public class ErrorWindow extends Dialog {
       // copy details to clipboard button
       Button clipboarButton = new Button(i18n.getClipboard());
       clipboarButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-      ClipboardHelper clipboardHelper = new ClipboardHelper(getStackTrace(), clipboarButton);
-      buttonsLayout.add(clipboardHelper);
-      buttonsLayout.setAlignSelf(Alignment.START, clipboardHelper);
-      buttonsLayout.setFlexGrow(1.0, clipboardHelper);
+      clipboarButton.addClickListener(e -> UI.getCurrent().getPage()
+          .executeJs("navigator.clipboard.writeText($0)", getStackTrace()));
+      clipboarButton.getStyle().set("margin-right", "auto");
+      buttonsLayout.add(clipboarButton);
 
       // show details button
       Button button = createDetailsButtonLayout();
