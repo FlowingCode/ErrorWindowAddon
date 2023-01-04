@@ -1,31 +1,18 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
+node_modules
+target
+.vscode
 .settings
-.springBeans
-
-### IntelliJ IDEA ###
+.project
+.classpath
+webpack.generated.js
+package-lock.json
+package.json
+webpack.config.js
+/error-screenshots
+drivers
+tsconfig.json
 .idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-widgetsets
-/node_modules
-/webpack.generated.js
-/package.json
-/package-lock.json
-/webpack.config.js
+types.d.ts
+/frontend/generated
+/frontend/index.html
+vite.generated.ts
