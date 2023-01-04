@@ -21,10 +21,16 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
-public class DefaultErrorWindowFactory implements ErrorWindowFactory {
+public class I18nErrorWindowFactory implements ErrorWindowFactory {
 
+  private final ErrorWindowI18n errorWindowI18n;
+  
+  I18nErrorWindowFactory(ErrorWindowI18n errorWindowI18n){
+    this.errorWindowI18n = errorWindowI18n;
+  }
+  
   @Override
   public void showError(ErrorDetails details) {
-    new ErrorWindow(details).open();
+    new ErrorWindow(details, errorWindowI18n).open();
   }
 }
