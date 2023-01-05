@@ -176,7 +176,7 @@ public class ErrorWindow extends Dialog {
 
       // copy details to clipboard button
       Button clipboarButton = new Button(i18n.getClipboard());
-      clipboarButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+      clipboarButton.getThemeNames().add(ButtonVariant.LUMO_TERTIARY.getVariantName());
       clipboarButton.addClickListener(e -> UI.getCurrent().getPage()
           .executeJs("navigator.clipboard.writeText($0)", getStackTrace()));
       clipboarButton.getStyle().set("margin-right", "auto");
