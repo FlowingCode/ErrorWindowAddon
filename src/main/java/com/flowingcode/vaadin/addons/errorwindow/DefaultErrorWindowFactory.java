@@ -25,6 +25,7 @@ public class DefaultErrorWindowFactory implements ErrorWindowFactory {
 
   @Override
   public void showError(ErrorDetails details) {
-    new ErrorWindow(details).open();
+    ErrorWindow w = new ErrorWindow(details);
+    w.open();
   }
 }

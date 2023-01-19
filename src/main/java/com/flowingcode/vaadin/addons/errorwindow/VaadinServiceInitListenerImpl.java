@@ -37,7 +37,8 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
 
   @Override
   public void serviceInit(ServiceInitEvent event) {
-    event.getSource()
+    event
+        .getSource()
         .addSessionInitListener(ev -> ev.getSession().setErrorHandler(this::handleError));
     registerErrorView(event.getSource());
   }
