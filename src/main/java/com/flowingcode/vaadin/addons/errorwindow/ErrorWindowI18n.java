@@ -21,6 +21,8 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+import com.vaadin.flow.function.SerializableFunction;
+
 /**
  * Internationalization object for customizing the component UI texts. An instance with the default
  * messages can be obtained using {@link ErrorWindowI18n#createDefault()}
@@ -45,9 +47,24 @@ public class ErrorWindowI18n {
     this.clipboard = "Copy details to clipboard";
   }
 
+  private ErrorWindowI18n(SerializableFunction<String, String> i18nTranslator) {
+    this.caption = i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.caption");
+    this.instructions =
+        i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.instructions");
+    this.close = i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.close");
+    this.details = i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.details");
+    this.defaultErrorMessage =
+        i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.defaultErrorMessage");
+    this.clipboard = i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.clipboard");
+  }
+
   /** @return a new instance with the default messages */
   public static ErrorWindowI18n createDefault() {
     return new ErrorWindowI18n();
+  }
+
+  public static ErrorWindowI18n create(SerializableFunction<String, String> i18nTranslator) {
+    return new ErrorWindowI18n(i18nTranslator);
   }
 
   /** Sets the caption of the error window. */

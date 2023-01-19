@@ -193,6 +193,12 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
+                	<systemProperties>
+                		<systemProperty>
+                			<key>vaadin.i18n.provider</key>
+                			<value>com.flowingcode.vaadin.addons.errorwindow.TranslationProvider</value>
+                		</systemProperty>
+                	</systemProperties>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                     <!-- Use test scope because the UI/demo classes are in
                             the test package. -->

@@ -38,6 +38,9 @@ import com.vaadin.flow.router.Route;
 public class ErrorwindowDemo extends VerticalLayout {
 
   public ErrorwindowDemo() {
+    ErrorWindowI18n errorWindowI18n = ErrorWindowI18n.create(this::getTranslation);
+    ErrorManager.setErrorWindowFactory(new I18nErrorWindowFactory(errorWindowI18n));
+    
     Button errorButton =
         new Button(
             "Throw Error",
@@ -87,6 +90,17 @@ public class ErrorwindowDemo extends VerticalLayout {
               }
             });
 
+    Button throwErrori18nSupport =
+        new Button(
+            "Throw Error with i18n support",
+            ev -> {
+              try {
+                Integer.parseInt("asdf");
+              } catch (NumberFormatException e) {
+                new ErrorWindow(e, "CUSTOM ERROR MESSAGE", errorWindowI18n).open();
+              }
+            });
+    
     Checkbox productionModeCb = new Checkbox("Production Mode");
     productionModeCb.addValueChangeListener(
         e -> {
@@ -106,7 +120,8 @@ public class ErrorwindowDemo extends VerticalLayout {
         errorButton,
         throwErrorWithoutErrorHandler,
         throwErrorWithCustomMessageAndCustomTexts,
-        throwErrorWithCustomMessage);
+        throwErrorWithCustomMessage,
+        throwErrori18nSupport);
 
     add(new Button("Navigation error",
         ev -> UI.getCurrent().navigate(ThrowInConstructorView.class)));
