@@ -25,12 +25,12 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.ErrorParameter;
 import com.vaadin.flow.router.HasErrorParameter;
 import com.vaadin.flow.router.internal.DefaultErrorHandler;
-import javax.annotation.security.PermitAll;
 import org.apache.http.HttpStatus;
 
 @SuppressWarnings("serial")
 @DefaultErrorHandler
-@PermitAll
+@javax.annotation.security.PermitAll
+@jakarta.annotation.security.PermitAll
 public class ErrorView extends VerticalLayout implements HasErrorParameter<Exception> {
 
   @Override
