@@ -21,14 +21,25 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+/** A factory class to create an error window with internationalization support. */
 public class I18nErrorWindowFactory implements ErrorWindowFactory {
 
   private final ErrorWindowI18n errorWindowI18n;
   
+  /**
+   * Constructs a new I18nErrorWindowFactory instance with a given ErrorWindowI18n instance.
+   *
+   * @param errorWindowI18n the ErrorWindowI18n instance to be used
+   */
   I18nErrorWindowFactory(ErrorWindowI18n errorWindowI18n){
     this.errorWindowI18n = errorWindowI18n;
   }
   
+  /**
+   * Shows an error window with the given error details and internationalization support.
+   *
+   * @param details the ErrorDetails instance to be shown in the error window
+   */
   @Override
   public void showError(ErrorDetails details) {
     new ErrorWindow(details, errorWindowI18n).open();

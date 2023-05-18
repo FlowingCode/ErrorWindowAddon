@@ -21,8 +21,18 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+/**
+ * Default implementation of {@link ErrorWindowFactory}. Displays error details using an {@link
+ * ErrorWindow}.
+ */
 public class DefaultErrorWindowFactory implements ErrorWindowFactory {
 
+  /**
+   * Displays the error details creating a new instance of {@link ErrorWindow}. The error window is
+   * displayed on the screen by invoking {@link ErrorWindow#open()}.
+   *
+   * @param details the error details to display
+   */
   @Override
   public void showError(ErrorDetails details) {
     ErrorWindow w = new ErrorWindow(details);

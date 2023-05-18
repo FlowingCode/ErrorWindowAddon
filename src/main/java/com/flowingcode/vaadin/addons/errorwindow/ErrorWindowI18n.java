@@ -25,7 +25,7 @@ import com.vaadin.flow.function.SerializableFunction;
 
 /**
  * Internationalization object for customizing the component UI texts. An instance with the default
- * messages can be obtained using {@link ErrorWindowI18n#createDefault()}
+ * messages can be obtained using {@link ErrorWindowI18n#createDefault()}.
  *
  * @author michael.knigge@gmx.de
  */
@@ -38,6 +38,7 @@ public class ErrorWindowI18n {
   private String defaultErrorMessage;
   private String clipboard;
 
+  /** Constructor for creating the default instance of the object. */
   private ErrorWindowI18n() {
     this.caption = "An error has occurred";
     this.instructions = "Please report the following code to your system administrator";
@@ -47,6 +48,11 @@ public class ErrorWindowI18n {
     this.clipboard = "Copy details to clipboard";
   }
 
+  /**
+   * Constructor for creating an instance of the object from a message translator function.
+   *
+   * @param i18nTranslator a message translation function
+   */
   private ErrorWindowI18n(SerializableFunction<String, String> i18nTranslator) {
     this.caption = i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.caption");
     this.instructions =
@@ -58,11 +64,21 @@ public class ErrorWindowI18n {
     this.clipboard = i18nTranslator.apply("com.flowingcode.vaadin.addons.errorwindow.clipboard");
   }
 
-  /** @return a new instance with the default messages */
+  /**
+   * Creates a new instance with the default messages.
+   *
+   * @return a new instance with the default messages
+   */
   public static ErrorWindowI18n createDefault() {
     return new ErrorWindowI18n();
   }
 
+  /**
+   * Creates a new instance with the provided message translation function.
+   *
+   * @param i18nTranslator a message translation function
+   * @return a new instance with the provided message translation function
+   */
   public static ErrorWindowI18n create(SerializableFunction<String, String> i18nTranslator) {
     return new ErrorWindowI18n(i18nTranslator);
   }
@@ -72,7 +88,7 @@ public class ErrorWindowI18n {
     this.caption = caption;
   }
 
-  /** @return returns the caption of the error window. */
+  /** @return returns the caption of the error window */
   public String getCaption() {
     return this.caption;
   }
@@ -82,7 +98,7 @@ public class ErrorWindowI18n {
     this.instructions = instructions;
   }
 
-  /** @return returns the instructions for the user if the UUID is displayed in production mode. */
+  /** @return returns the instructions for the user if the UUID is displayed in production mode */
   public String getInstructions() {
     return this.instructions;
   }
@@ -92,7 +108,7 @@ public class ErrorWindowI18n {
     this.close = close;
   }
 
-  /** @return returns the text of the "Close"-Button. */
+  /** @return returns the text of the "Close"-Button */
   public String getClose() {
     return this.close;
   }
@@ -102,7 +118,7 @@ public class ErrorWindowI18n {
     this.details = details;
   }
 
-  /** @return returns the text of the "Details"-Button. */
+  /** @return returns the text of the "Details"-Button */
   public String getDetails() {
     return this.details;
   }
@@ -117,13 +133,13 @@ public class ErrorWindowI18n {
 
   /**
    * @return returns the default error message shown if the message passed to the error window is
-   *     <code>null</code>.
+   *     <code>null</code>
    */
   public String getDefaultErrorMessage() {
     return this.defaultErrorMessage;
   }
 
-  /** @return returns the text for the "Copy details to clipboard" button. */
+  /** @return returns the text for the "Copy details to clipboard" button */
   public String getClipboard() {
     return clipboard;
   }

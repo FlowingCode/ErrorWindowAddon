@@ -21,29 +21,56 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+/** Encapsulates error details, including the throwable object and the cause of the error. */
 public class ErrorDetails {
 
   private Throwable throwable;
   private String cause;
 
+  /**
+   * Constructs a new ErrorDetails object with the given throwable and cause.
+   *
+   * @param throwable the throwable object that caused the error
+   * @param cause the cause of the error
+   */
   public ErrorDetails(Throwable throwable, String cause) {
     super();
     this.throwable = throwable;
     this.cause = cause;
   }
 
+  /**
+   * Retrieves the throwable object that caused the error.
+   *
+   * @return the throwable object that caused the error
+   */
   public Throwable getThrowable() {
     return throwable;
   }
 
+  /**
+   * Sets the throwable object that caused the error.
+   *
+   * @param throwable the throwable object that caused the error
+   */
   public void setThrowable(Throwable throwable) {
     this.throwable = throwable;
   }
 
+  /**
+   * Retrieves the cause of the error.
+   *
+   * @return the cause of the error
+   */
   public String getCause() {
     return cause;
   }
 
+  /**
+   * Sets the cause of the error.
+   *
+   * @param cause the cause of the error
+   */
   public void setCause(String cause) {
     this.cause = cause;
   }
