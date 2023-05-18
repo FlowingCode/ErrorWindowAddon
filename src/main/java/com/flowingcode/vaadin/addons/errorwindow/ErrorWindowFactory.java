@@ -21,10 +21,21 @@
 
 package com.flowingcode.vaadin.addons.errorwindow;
 
+/** A factory interface for creating error windows. */
 public interface ErrorWindowFactory {
 
+  /**
+   * Shows the error details on a new window.
+   *
+   * @param details the details of the error to be shown
+   */
   void showError(ErrorDetails details);
 
+  /**
+   * Checks whether the application is in production mode.
+   *
+   * @return true if the application is in production mode, false otherwise
+   */
   default boolean isProductionMode() {
     return ("true".equals(System.getProperty("productionMode")));
   }

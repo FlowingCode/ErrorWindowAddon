@@ -31,10 +31,21 @@ import com.vaadin.flow.server.VaadinServiceInitListener;
 import com.vaadin.flow.server.startup.ApplicationRouteRegistry;
 import java.util.Collections;
 
+/**
+ * Implementation of {@code VaadinServiceInitListener} interface. This class adds a session init
+ * listener to the Vaadin service, sets an error handler and registers an error view.
+ */
 public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener {
 
   private static final long serialVersionUID = 1L;
 
+  /**
+   * Implements the {@code serviceInit} method from {@code VaadinServiceInitListener} interface.
+   * This method sets {@code ErrorManager} as the error handler and registers {@link ErrorView} as
+   * the default error view.
+   *
+   * @param event The ServiceInitEvent to be handled
+   */
   @Override
   public void serviceInit(ServiceInitEvent event) {
     event
@@ -43,6 +54,11 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
     registerErrorView(event.getSource());
   }
 
+  /**
+   * Registers an error view to the Vaadin service.
+   *
+   * @param service The Vaadin service to which the error view needs to be registered
+   */
   private void registerErrorView(VaadinService source) {
     VaadinContext context = VaadinService.getCurrent().getContext();
     ApplicationRouteRegistry registry = ApplicationRouteRegistry.getInstance(context);
