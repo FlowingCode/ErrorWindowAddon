@@ -64,7 +64,7 @@ Contributions are welcome, but there are no guarantees that they are accepted as
 
 This add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-RssItems Addon is written by Flowing Code S.A.
+ErrorWindow Addon is written by Flowing Code S.A.
 
 
 
