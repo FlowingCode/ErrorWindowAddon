@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.flowingcode.vaadin.addons</groupId>
 	<artifactId>error-window-vaadin</artifactId>
-	<version>3.5.2-SNAPSHOT</version>
+	<version>3.6.0-SNAPSHOT</version>
 	<name>Error Window Add-on</name>
 
 	<prerequisites>
