@@ -123,8 +123,14 @@ public class ErrorwindowDemo extends VerticalLayout {
         throwErrorWithCustomMessage,
         throwErrori18nSupport);
 
-    add(new Button("Navigation error",
-        ev -> UI.getCurrent().navigate(ThrowInConstructorView.class)));
+    add(new Button("Navigation error", ev -> {
+      UI current = UI.getCurrent();
+      try {
+        UI.class.getMethod("navigate", Class.class).invoke(current, ThrowInConstructorView.class);
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+    }));
 
     add(upload);
 
