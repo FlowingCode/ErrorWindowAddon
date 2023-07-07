@@ -28,6 +28,14 @@
   font-weight: 600;
   font-size: var(--lumo-font-size-l);
   margin-top: 1em;	
+  display: inline-block;
+  margin-left: auto;
+  width: 100%;
+}
+
+[theme~="error-window"] .errorlabel {
+  width: 100%;
+  word-break: break-all;
 }
 
 [theme~="error-window"] .stacktrace {

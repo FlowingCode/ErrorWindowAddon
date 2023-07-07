@@ -307,11 +307,11 @@ public class ErrorWindow extends Dialog {
       label =
           label.concat(
               String.format(
-                  "<br />%s<div class='uuid'>%s</div>",
+                  "<br />%s<br /><span class='uuid'>%s</span>",
                   i18n.getInstructions(), uuid));
     }
     final Html errorLabel = new Html("<span>" + label + "</span>");
-    errorLabel.getElement().getStyle().set("width", "100%");
+    errorLabel.getElement().getClassList().add("errorlabel");
     return errorLabel;
   }
 }
