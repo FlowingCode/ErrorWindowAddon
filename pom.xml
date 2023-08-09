@@ -6,6 +6,14 @@
 	<version>3.6.0-SNAPSHOT</version>
 	<name>Error Window Add-on</name>
 
+	<developers>
+		<developer>
+			<id>flowingcode</id>
+			<organization>Flowing Code</organization>
+			<organizationUrl>https://www.flowingcode.com</organizationUrl>
+		</developer>
+	</developers>
+
 	<prerequisites>
 		<maven>3</maven>
 	</prerequisites>
