@@ -17,25 +17,22 @@
  * limitations under the License.
  * #L%
  */
-
-
 package com.flowingcode.vaadin.addons.errorwindow;
 
-import com.flowingcode.vaadin.addons.DemoLayout;
-import com.flowingcode.vaadin.addons.GithubLink;
-import com.flowingcode.vaadin.addons.demo.TabbedDemo;
-import com.vaadin.flow.router.ParentLayout;
-import com.vaadin.flow.router.Route;
+import java.io.Serializable;
 
-@SuppressWarnings("serial")
-@ParentLayout(DemoLayout.class)
-@Route("error-window")
-@GithubLink("https://github.com/FlowingCode/ErrorWindowAddon")
-public class ErrorwindowDemoView extends TabbedDemo {
+/**
+ * Any {@code com.vaadin.ui.Component} implementing this interface will be informed when
+ * {@link ErrorManager} handles an exception.
+ */
+@FunctionalInterface
+public interface ErrorEventObserver extends Serializable {
 
-  public ErrorwindowDemoView() {
-    addDemo(ErrorwindowDemo.class);
-    addDemo(ErrorEventObserverDemo.class);
-    setSizeFull();
-  }
+  /**
+   * Notifies when {@link ErrorManager} handles an exception.
+   *
+   * @param event error event with exception details
+   */
+  void onError(ErrorEvent event);
+
 }

@@ -90,6 +90,7 @@ public final class ErrorManager {
    */
   public static ErrorWindowFactory getErrorWindowFactory(Class<?> clazz) {
     return Optional.ofNullable(factories.get(clazz))
+        .map(ErrorEventWindowFactory::newInstance)
         .orElseGet(() -> getErrorWindowFactory(clazz.getSuperclass()));
   }
 
