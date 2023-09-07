@@ -376,7 +376,7 @@
 			<id>gpg</id>
 			<activation>
 				<property>
-					<name>gpg.passphrase</name>
+					<name>env.gpg.passphrase</name>
 				</property>
 			</activation>
 			<build>
