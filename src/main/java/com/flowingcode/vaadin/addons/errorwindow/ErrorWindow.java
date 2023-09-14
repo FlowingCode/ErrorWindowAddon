@@ -23,12 +23,14 @@ package com.flowingcode.vaadin.addons.errorwindow;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -216,7 +218,7 @@ public class ErrorWindow extends Dialog {
     title.getElement().getStyle().set("width", "100%");
     mainLayout.add(title);
 
-    final Html errorLabel = createErrorLabel();
+    Component errorLabel = createErrorLabel();
     mainLayout.add(errorLabel);
     mainLayout.setHorizontalComponentAlignment(Alignment.START, errorLabel);
 
@@ -300,18 +302,21 @@ public class ErrorWindow extends Dialog {
     pw.flush();
     return baos.toString();
   }
-  
-  protected Html createErrorLabel() {
-    String label = errorMessage == null ? i18n.getDefaultErrorMessage() : errorMessage;
+
+  protected Component createErrorLabel() {
+    Div errorLabel = new Div();
+    errorLabel.setClassName("errorlabel");
+
     if (productionMode) {
-      label =
-          label.concat(
-              String.format(
-                  "<br />%s<br /><span class='uuid'>%s</span>",
-                  i18n.getInstructions(), uuid));
+      Div instructions = new Div(new Text(i18n.getInstructions()));
+      Span uuidSpan = new Span(uuid);
+      uuidSpan.setClassName("uuid");
+      errorLabel.add(instructions, uuidSpan);
+    } else {
+      String label = errorMessage == null ? i18n.getDefaultErrorMessage() : errorMessage;
+      errorLabel.setText(label);
     }
-    final Html errorLabel = new Html("<span>" + label + "</span>");
-    errorLabel.getElement().getClassList().add("errorlabel");
+
     return errorLabel;
   }
 }
