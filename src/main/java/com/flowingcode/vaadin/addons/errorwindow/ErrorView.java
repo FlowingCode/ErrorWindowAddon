@@ -25,7 +25,6 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.ErrorParameter;
 import com.vaadin.flow.router.HasErrorParameter;
 import com.vaadin.flow.router.internal.DefaultErrorHandler;
-import org.apache.http.HttpStatus;
 
 /** View used to display an error message when navigation fails due to an exception. */
 @SuppressWarnings("serial")
@@ -33,6 +32,8 @@ import org.apache.http.HttpStatus;
 @javax.annotation.security.PermitAll
 @jakarta.annotation.security.PermitAll
 public class ErrorView extends VerticalLayout implements HasErrorParameter<Exception> {
+
+  private static final int INTERNAL_SERVER_ERROR = 500;
 
   /**
    * This method sets the error parameter to display the error message and returns an HTTP status
@@ -57,7 +58,7 @@ public class ErrorView extends VerticalLayout implements HasErrorParameter<Excep
       }
     }.getChildren().forEach(this::add);
 
-    return HttpStatus.SC_INTERNAL_SERVER_ERROR;
+    return INTERNAL_SERVER_ERROR;
   }
 
 }
