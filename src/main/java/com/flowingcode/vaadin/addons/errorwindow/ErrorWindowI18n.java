@@ -22,6 +22,7 @@
 package com.flowingcode.vaadin.addons.errorwindow;
 
 import com.vaadin.flow.function.SerializableFunction;
+import java.io.Serializable;
 
 /**
  * Internationalization object for customizing the component UI texts. An instance with the default
@@ -29,7 +30,8 @@ import com.vaadin.flow.function.SerializableFunction;
  *
  * @author michael.knigge@gmx.de
  */
-public class ErrorWindowI18n {
+@SuppressWarnings("serial")
+public class ErrorWindowI18n implements Serializable {
 
   private String caption;
   private String instructions;
