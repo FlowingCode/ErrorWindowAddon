@@ -101,7 +101,8 @@ public class ErrorwindowDemo extends VerticalLayout {
                 new ErrorWindow(e, "CUSTOM ERROR MESSAGE", errorWindowI18n).open();
               }
             });
-    
+
+    // #if vaadin eq 0
     Checkbox productionModeCb = new Checkbox("Production Mode");
     productionModeCb.setValue(getProductionMode());
     productionModeCb.addValueChangeListener(
@@ -110,6 +111,7 @@ public class ErrorwindowDemo extends VerticalLayout {
           Notification.show(
               "Currently production mode is: " + System.getProperty("productionMode"));
         });
+    // #endif
 
     Upload upload = new Upload(new NullMemoryBuffer());
     upload.addSucceededListener(ev -> {
@@ -138,6 +140,7 @@ public class ErrorwindowDemo extends VerticalLayout {
 
   }
 
+  // #if vaadin eq 0
   private boolean getProductionMode() {
     return Optional.ofNullable(System.getProperty("errorWindowProductionMode"))
         .map(Boolean::valueOf).orElseGet(() -> {
@@ -149,4 +152,5 @@ public class ErrorwindowDemo extends VerticalLayout {
   private void setProductionMode(boolean mode) {
     System.setProperty("errorWindowProductionMode", Boolean.toString(mode));
   }
+  // #endif
 }
