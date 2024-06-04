@@ -2,7 +2,7 @@
  * #%L
  * Error Window Add-on
  * %%
- * Copyright (C) 2017 - 2023 Flowing Code
+ * Copyright (C) 2017 - 2024 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,8 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
 
   private static final long serialVersionUID = 1L;
 
+  private static boolean productionMode;
+
   /**
    * Implements the {@code serviceInit} method from {@code VaadinServiceInitListener} interface.
    * This method sets {@code ErrorManager} as the error handler and registers {@link ErrorView} as
@@ -48,6 +50,8 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
    */
   @Override
   public void serviceInit(ServiceInitEvent event) {
+    productionMode = event.getSource().getDeploymentConfiguration().isProductionMode();
+
     event
         .getSource()
         .addSessionInitListener(ev -> ev.getSession().setErrorHandler(this::handleError));
@@ -76,4 +80,9 @@ public class VaadinServiceInitListenerImpl implements VaadinServiceInitListener 
       event.getThrowable().printStackTrace();
     }
   }
+
+  static boolean getProductionMode() {
+    return productionMode;
+  }
+
 }
