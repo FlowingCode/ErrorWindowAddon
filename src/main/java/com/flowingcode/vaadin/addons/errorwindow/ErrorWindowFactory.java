@@ -2,7 +2,7 @@
  * #%L
  * Error Window Add-on
  * %%
- * Copyright (C) 2017 - 2023 Flowing Code
+ * Copyright (C) 2017 - 2024 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,17 @@ public interface ErrorWindowFactory {
    * @return true if the application is in production mode, false otherwise
    */
   default boolean isProductionMode() {
-    return ("true".equals(System.getProperty("productionMode")));
+    String errorWindowProductionMode = System.getProperty("errorWindowProductionMode");
+    if (errorWindowProductionMode != null) {
+      return Boolean.valueOf(errorWindowProductionMode);
+    }
+
+    String productionMode = System.getProperty("productionMode");
+    if (productionMode != null) {
+      return Boolean.valueOf(productionMode);
+    }
+
+    return VaadinServiceInitListenerImpl.getProductionMode();
   }
+
 }
