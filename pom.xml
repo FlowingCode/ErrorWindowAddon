@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.flowingcode.vaadin.addons</groupId>
 	<artifactId>error-window-vaadin</artifactId>
-	<version>4.1.0-SNAPSHOT</version>
+	<version>4.1.0</version>
 	<name>Error Window Add-on</name>
 	<description>Error handler that displays a dialog with exception information</description>
 	<url>https://www.flowingcode.com/en/open-source/</url>
@@ -30,7 +30,7 @@
 		<url>https://github.com/FlowingCode/ErrorWindowAddon</url>
 		<connection>scm:git:git://github.com/FlowingCode/ErrorWindowAddon.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com:/FlowingCode/ErrorWindowAddon.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>error-window-vaadin-4.1.0</tag>
 	</scm>
 
         <distributionManagement>
