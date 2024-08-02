@@ -1,8 +1,12 @@
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/error-window-add-on)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/error-window-add-on.svg)](https://vaadin.com/directory/component/error-window-add-on)
 [![Build Status](https://jenkins.flowingcode.com/job/ErrorWindow-14-addon/badge/icon)](https://jenkins.flowingcode.com/job/ErrorWindow-14-addon)
+[![Maven Central](https://img.shields.io/maven-central/v/com.flowingcode.vaadin.addons/error-window-vaadin)](https://mvnrepository.com/artifact/com.flowingcode.vaadin.addons/error-window-vaadin)
+
 
 # Error Window Add-on for Vaadin
 
-Error Window Add-on is a UI component add-on for Vaadin 14+
+Error Window Add-on is a UI component add-on for Vaadin Flow
 
 ## Features
 
@@ -21,29 +25,35 @@ This add-on is built using server side API
 
 ## Online demo
 
-Try the add-on demo at http://addonsv14.flowingcode.com/error-window
+[Online demo here](http://addonsv24.flowingcode.com/error-window)
 
 ## Download release
 
-Official releases of this add-on are available through Vaadin Directory. 
+[Available in Vaadin Directory](https://vaadin.com/directory/component/error-window-add-on)
+
+### Maven install
+
+Add the following dependencies in your pom.xml file:
+
+```xml
+<dependency>
+   <groupId>com.flowingcode.vaadin.addons</groupId>
+   <artifactId>error-window-vaadin</artifactId>
+   <version>X.Y.Z</version>
+</dependency>
+```
+Release versions are available from Maven Central repository. For SNAPSHOT versions see [here](https://maven.flowingcode.com/snapshots/).
 
 ## Building and running demo
 
-- git clone https://github.com/FlowingCode/error-window-addon
-- mvn clean install
-- cd demo
-- mvn jetty:run
+- git clone repository
+- mvn clean install jetty:run
 
 To see the demo, navigate to http://localhost:8080/
 
 ## Release notes
 
-### Version 3.0.0
-- First Vaadin 14+ release
-
-## Roadmap
-
-This component is developed as a hobby with no public roadmap or any guarantees of upcoming releases. 
+See [here](https://github.com/FlowingCode/ErrorWindowAddon/releases)
 
 ## Issue tracking
 
@@ -51,20 +61,58 @@ The issues for this add-on are tracked on its github.com page. All bug reports a
 
 ## Contributions
 
-Contributions are welcome, but there are no guarantees that they are accepted as such. Process for contributing is the following:
+Contributions are welcome, but there are no guarantees that they are accepted as such. 
 
-- Fork this project
+As first step, please refer to our [Development Conventions](https://github.com/FlowingCode/DevelopmentConventions) page to find information about Conventional Commits & Code Style requirements.
+
+Then, follow these steps for creating a contribution:
+
+- Fork this project.
 - Create an issue to this project about the contribution (bug or feature) if there is no such issue about it already. Try to keep the scope minimal.
 - Develop and test the fix or functionality carefully. Only include minimum amount of code needed to fix the issue.
-- Refer to the fixed issue in commit
-- Send a pull request for the original project
-- Comment on the original issue that you have implemented a fix for it
+- For commit message, use [Conventional Commits](https://github.com/FlowingCode/DevelopmentConventions/blob/main/conventional-commits.md) to describe your change.
+- Send a pull request for the original project.
+- Comment on the original issue that you have implemented a fix for it.
 
 ## License & Author
 
 This add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-ErrorWindow Addon is written by Flowing Code S.A.
+Error Window Add-on is written by Flowing Code S.A.
 
+# Developer Guide
 
+## Getting started
+
+```java
+Button errorButton =
+    new Button(
+        "Throw Error",
+        event -> {
+          Integer.parseInt("asdf");
+        });
+```    
+    
+```java
+Button throwErrorWithoutErrorHandler =
+    new Button(
+        "Throw Error without an error handler",
+        ev -> {
+          try {
+            Integer.parseInt("asdf");
+          } catch (NumberFormatException e) {
+            ErrorManager.showError(e);
+          }
+        });
+```
+
+## Special configuration when using Spring
+
+By default, Vaadin Flow only includes ```com/vaadin/flow/component``` to be always scanned for UI components and views. For this reason, the add-on might need to be allowed in order to display correctly. 
+
+To do so, just add ```com.flowingcode``` to the ```vaadin.allowed-packages``` property in ```src/main/resources/application.properties```, like:
+
+```vaadin.allowed-packages = com.vaadin,org.vaadin,dev.hilla,com.flowingcode```
+ 
+More information on Spring scanning configuration [here](https://vaadin.com/docs/latest/integrations/spring/configuration/#configure-the-scanning-of-packages).
 
