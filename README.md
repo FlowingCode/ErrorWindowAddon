@@ -2,7 +2,7 @@
 [![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/error-window-add-on.svg)](https://vaadin.com/directory/component/error-window-add-on)
 [![Build Status](https://jenkins.flowingcode.com/job/ErrorWindow-14-addon/badge/icon)](https://jenkins.flowingcode.com/job/ErrorWindow-14-addon)
 [![Maven Central](https://img.shields.io/maven-central/v/com.flowingcode.vaadin.addons/error-window-vaadin)](https://mvnrepository.com/artifact/com.flowingcode.vaadin.addons/error-window-vaadin)
-
+[![Javadoc](https://img.shields.io/badge/javadoc-00b4f0)](https://javadoc.flowingcode.com/artifact/com.flowingcode.vaadin.addons/error-window-vaadin)
 
 # Error Window Add-on for Vaadin
 
