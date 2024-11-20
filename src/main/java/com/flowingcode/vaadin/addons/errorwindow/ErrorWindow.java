@@ -81,7 +81,7 @@ public class ErrorWindow extends Dialog {
   /**
    * Constructs and initializes an ErrorWindow object with the supplied cause and default production mode and i18n.
    *
-   * @param cause: The cause of the error
+   * @param cause The cause of the error
    */
   public ErrorWindow(final Throwable cause) {
     this(cause, null, isProductionMode(), ErrorWindowI18n.createDefault());
@@ -90,8 +90,8 @@ public class ErrorWindow extends Dialog {
   /**
    * Constructs and initializes an ErrorWindow object with the supplied details and and default production mode.
    *
-   * @param cause: The cause of the error
-   * @param i18n: The internationalization of the ErrorWindow
+   * @param cause The cause of the error
+   * @param i18n The internationalization of the ErrorWindow
    */
   public ErrorWindow(final Throwable cause, final ErrorWindowI18n i18n) {
     this(cause, null, isProductionMode(), i18n);
@@ -100,8 +100,8 @@ public class ErrorWindow extends Dialog {
   /**
    * Constructs and initializes an ErrorWindow object with the supplied details and default and default production mode and i18n.
    *
-   * @param cause: The cause of the error
-   * @param errorMessage: An optional error message
+   * @param cause The cause of the error
+   * @param errorMessage An optional error message
    */
   public ErrorWindow(final Throwable cause, final String errorMessage) {
     this(cause, errorMessage, isProductionMode(), ErrorWindowI18n.createDefault());
@@ -110,9 +110,9 @@ public class ErrorWindow extends Dialog {
   /**
    * Constructs and initializes an ErrorWindow object with the supplied details and default production mode.
    *
-   * @param cause: The cause of the error
-   * @param errorMessage: An optional error message
-   * @param i18n: The internationalization of the ErrorWindow
+   * @param cause The cause of the error
+   * @param errorMessage An optional error message
+   * @param i18n The internationalization of the ErrorWindow
    */
   public ErrorWindow(final Throwable cause, final String errorMessage, final ErrorWindowI18n i18n) {
     this(cause, errorMessage, isProductionMode(), i18n);
@@ -121,9 +121,10 @@ public class ErrorWindow extends Dialog {
   /**
    * Constructs and initializes an ErrorWindow object with the supplied details and default i18n.
    *
-   * @param cause: The cause of the error
-   * @param errorMessage: An optional error message
-   * @param productionMode: The mode in which the Application is running. If true, a code is displayed with error details, else debug information is shown
+   * @param cause The cause of the error
+   * @param errorMessage An optional error message
+   * @param productionMode The mode in which the Application is running. If true, a code is
+   *        displayed with error details, else debug information is shown
    */
   public ErrorWindow(final Throwable cause, final String errorMessage, boolean productionMode) {
     this(cause, errorMessage, productionMode, ErrorWindowI18n.createDefault());
@@ -132,10 +133,11 @@ public class ErrorWindow extends Dialog {
   /**
    * Constructs and initializes an ErrorWindow object with the supplied details.
    *
-   * @param cause: The cause of the error
-   * @param errorMessage: An optional error message
-   * @param productionMode: The mode in which the Application is running. If true, a code is displayed with error details, else debug information is shown
-   * @param i18n: The internationalization of the ErrorWindow
+   * @param cause The cause of the error
+   * @param errorMessage An optional error message
+   * @param productionMode The mode in which the Application is running. If true, a code is
+   *        displayed with error details, else debug information is shown
+   * @param i18n The internationalization of the ErrorWindow
    */
   public ErrorWindow(
       final Throwable cause,
@@ -179,8 +181,8 @@ public class ErrorWindow extends Dialog {
    * Constructs and initializes an ErrorWindow object with the supplied error details and internationalization.
    * This constructor allows for provision of additional information, which is an ErrorDetails object.
    *
-   * @param errorDetails: The ErrorDetails object
-   * @param i18n: The internationalization of the ErrorWindow
+   * @param errorDetails The ErrorDetails object
+   * @param i18n The internationalization of the ErrorWindow
    */
   public ErrorWindow(ErrorDetails errorDetails, final ErrorWindowI18n i18n) {
     this(errorDetails.getThrowable(), errorDetails.getCause(), i18n);
