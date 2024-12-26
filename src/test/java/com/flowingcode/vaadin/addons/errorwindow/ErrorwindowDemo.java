@@ -60,18 +60,6 @@ public class ErrorwindowDemo extends VerticalLayout {
               }
             });
 
-    Button throwErrorWithCustomMessage =
-        new Button(
-            "Throw Error with custom message",
-            ev -> {
-              try {
-                Integer.parseInt("asdf");
-              } catch (NumberFormatException e) {
-                ErrorWindow w = new ErrorWindow(e, "CUSTOM ERROR MESSAGE");
-                w.open();
-              }
-            });
-
     Button throwErrorWithCustomMessageAndCustomTexts =
         new Button(
             "Throw Error with custom message (custom labels)",
@@ -124,7 +112,6 @@ public class ErrorwindowDemo extends VerticalLayout {
         errorButton,
         throwErrorWithoutErrorHandler,
         throwErrorWithCustomMessageAndCustomTexts,
-        throwErrorWithCustomMessage,
         throwErrori18nSupport);
 
     add(new Button("Navigation error", ev -> {
