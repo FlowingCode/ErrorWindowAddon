@@ -98,10 +98,11 @@ public class ErrorWindow extends Dialog {
   }
 
   /**
-   * Constructs and initializes an ErrorWindow object with the supplied details and default and default production mode and i18n.
+   * Constructs and initializes an ErrorWindow object with the supplied details and default
+   * production mode and i18n.
    *
    * @param cause The cause of the error
-   * @param errorMessage An optional error message
+   * @param errorMessage An optional error message that is displayed when production mode is false
    *
    * @deprecated The error message specified with this constructor is only displayed when production
    *             mode is false. Use {@link #ErrorWindow(Throwable, ErrorWindowI18n)} for specifying
@@ -113,10 +114,11 @@ public class ErrorWindow extends Dialog {
   }
 
   /**
-   * Constructs and initializes an ErrorWindow object with the supplied details and default production mode.
+   * Constructs and initializes an ErrorWindow object with the supplied details and default
+   * production mode.
    *
    * @param cause The cause of the error
-   * @param errorMessage An optional error message
+   * @param errorMessage An optional error message that is displayed when production mode is false
    * @param i18n The internationalization of the ErrorWindow
    */
   public ErrorWindow(final Throwable cause, final String errorMessage, final ErrorWindowI18n i18n) {
@@ -127,7 +129,7 @@ public class ErrorWindow extends Dialog {
    * Constructs and initializes an ErrorWindow object with the supplied details and default i18n.
    *
    * @param cause The cause of the error
-   * @param errorMessage An optional error message
+   * @param errorMessage An optional error message that is displayed when production mode is false
    * @param productionMode The mode in which the Application is running. If true, a code is
    *        displayed with error details, else debug information is shown
    */
@@ -139,7 +141,7 @@ public class ErrorWindow extends Dialog {
    * Constructs and initializes an ErrorWindow object with the supplied details.
    *
    * @param cause The cause of the error
-   * @param errorMessage An optional error message
+   * @param errorMessage An optional error message that is displayed when production mode is false
    * @param productionMode The mode in which the Application is running. If true, a code is
    *        displayed with error details, else debug information is shown
    * @param i18n The internationalization of the ErrorWindow
