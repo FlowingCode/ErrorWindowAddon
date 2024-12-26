@@ -102,7 +102,12 @@ public class ErrorWindow extends Dialog {
    *
    * @param cause The cause of the error
    * @param errorMessage An optional error message
+   *
+   * @deprecated The error message specified with this constructor is only displayed when production
+   *             mode is false. Use {@link #ErrorWindow(Throwable, ErrorWindowI18n)} for specifying
+   *             both debug and production mode messages.
    */
+  @Deprecated
   public ErrorWindow(final Throwable cause, final String errorMessage) {
     this(cause, errorMessage, isProductionMode(), ErrorWindowI18n.createDefault());
   }
