@@ -29,7 +29,6 @@ import com.vaadin.flow.router.internal.DefaultErrorHandler;
 /** View used to display an error message when navigation fails due to an exception. */
 @SuppressWarnings("serial")
 @DefaultErrorHandler
-@javax.annotation.security.PermitAll
 @jakarta.annotation.security.PermitAll
 public class ErrorView extends VerticalLayout implements HasErrorParameter<Exception> {
 
