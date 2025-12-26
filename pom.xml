@@ -452,6 +452,11 @@
 					<scope>provided</scope>
 				</dependency>			
 				<dependency>
+					<groupId>com.vaadin</groupId>
+					<artifactId>vaadin-dev</artifactId>
+					<optional>true</optional>
+				</dependency>
+				<dependency>
 					<groupId>com.flowingcode.vaadin.addons.demo</groupId>
 					<artifactId>commons-demo</artifactId>
 					<version>5.0.0</version>
