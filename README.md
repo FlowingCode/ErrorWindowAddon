@@ -23,6 +23,10 @@ It is posible to customize the message shown.
 
 This add-on is built using server side API
 
+## Supported versions
+
+Supported versions: Vaadin 14-25 (add-on version 4.x)
+
 ## Online demo
 
 [Online demo here](http://addonsv24.flowingcode.com/error-window)
