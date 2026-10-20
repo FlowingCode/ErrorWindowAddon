@@ -15,5 +15,7 @@ drivers
 /types.d.ts*
 /frontend/generated
 /frontend/index.html
+/src/main/frontend/generated
+/src/main/frontend/index.html
 vite.generated.ts
 /.claude/settings.local.json
